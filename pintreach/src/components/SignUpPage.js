@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+// import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const StyledSignUp = styled.div`
 
@@ -28,7 +29,33 @@ const StyledSignUp = styled.div`
 
 const SignUpPage = props => {
   console.log(props);
-  const [signup, setSignup] = useState();
+    const [signup, setSignup] = useState({
+        fname: '',
+        lname: '',
+        email: '',
+        password: ''
+    });
+
+    const handleChanges = e => {
+        setSignup({
+            ...signup,
+            [e.target.name]: e.target.value
+            }
+        )
+    };
+
+    // const onSubmit = e => {
+    //     e.preventDefault();
+    //     axiosWithAuth()
+    //     .post('api/login', signup)
+    //     .then(res => {
+    //         localStorage.setItem('token', res.data.payload);
+    //         props.history.push('/protected');
+    //     })
+    //         .catch(err => console.log('login error', err.response));
+    // }
+
+    
 
   return (
     <StyledSignUp>
@@ -49,7 +76,7 @@ const SignUpPage = props => {
         <button type="submit">Sign Up</button>
         <p>
           Aleady have an account? <br />
-          <a href="/login">Log in here</a>
+          <a href='#'>Log in here</a>
         </p>
       </form>
     </StyledSignUp>
