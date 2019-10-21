@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Link } from "react-router-dom";
 import SignUpPage from './components/SignUpPage';
 import './App.css';
 
