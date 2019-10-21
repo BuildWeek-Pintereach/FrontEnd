@@ -1,40 +1,40 @@
 // let nextId = 7;
 
-let friends = [
+export let friends = [
   {
     id: 1,
-    name: 'Ben',
-    email: 'ben@lambdaschool.com',
+    name: "Ben",
+    email: "ben@lambdaschool.com",
     articles: []
   },
   {
     id: 2,
-    name: 'Amanda',
-    email: 'amanda@lambdaschool.com',
+    name: "Amanda",
+    email: "amanda@lambdaschool.com",
     articles: []
   },
   {
     id: 3,
-    name: 'Ryan',
-    email: 'ryan@lambdaschool.com',
+    name: "Ryan",
+    email: "ryan@lambdaschool.com",
     articles: []
   },
   {
     id: 4,
-    name: 'Sara',
-    email: 'sara@lambdaschool.com',
+    name: "Sara",
+    email: "sara@lambdaschool.com",
     articles: []
   },
   {
     id: 5,
-    name: 'Sean',
-    email: 'sean@lambdaschool.com',
+    name: "Sean",
+    email: "sean@lambdaschool.com",
     articles: []
   },
   {
     id: 6,
-    name: 'Michelle',
-    email: 'michelle@gmail.com',
+    name: "Michelle",
+    email: "michelle@gmail.com",
     articles: []
   }
 ];
