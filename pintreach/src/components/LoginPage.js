@@ -1,15 +1,4 @@
 import React, { useState } from "react";
-<<<<<<< HEAD
-import { Route, Link } from "react-router-dom";
-
-export const LoginPage = () => {
-  return (
-    <div>
-      <h2>Login Page</h2>
-    </div>
-  );
-};
-=======
 import styled from "styled-components";
 // import { axiosWithAuth } from '../utils/axiosWithAuth';
 // import PrivateRoute from '../utils/PrivateRoute';
@@ -41,41 +30,41 @@ const StyledLogin = styled.div`
 
 `;
 const LoginPage = props => {
-    console.log(props);
-    const [login, setLogin] = useState({
-        username: '',
-        password: ''
-    });
-    
-    const handleChanges = e => {
-        setLogin({
-            ...login,
-            [e.target.name]: e.target.value
-            }
-        )
-    };
-    
-    const onSubmit = e => {
-        e.preventDefault();
-        // axiosWithAuth()
-        // .post('api/login', login)
-        // .then(res => {
-        //     localStorage.setItem('token', res.data.payload);
-        //     props.history.push('/protected');
-        // })
-        //     .catch(err => console.log('login error', err.response));
+  console.log(props);
+  const [login, setLogin] = useState({
+    username: '',
+    password: ''
+  });
+
+  const handleChanges = e => {
+    setLogin({
+      ...login,
+      [e.target.name]: e.target.value
     }
-    
-    
+    )
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    // axiosWithAuth()
+    // .post('api/login', login)
+    // .then(res => {
+    //     localStorage.setItem('token', res.data.payload);
+    //     props.history.push('/protected');
+    // })
+    //     .catch(err => console.log('login error', err.response));
+  }
+
+
 
   return (
     <StyledLogin>
       <form className="login-page" onSubmit={onSubmit}>
         <label htmlFor="username">Enter Username</label>
-        <input type="text" placeholder="JohnDoe123..." value={login.username} onChange={handleChanges} required/>
+        <input type="text" placeholder="JohnDoe123..." value={login.username} onChange={handleChanges} required />
         <br />
         <label htmlFor="password">Password</label>
-        <input type="text" placeholder="Password..." value={login.password} onChange={handleChanges} required/>
+        <input type="text" placeholder="Password..." value={login.password} onChange={handleChanges} required />
         <br />
 
         <button type="submit">Sign Up</button>
@@ -91,4 +80,3 @@ const LoginPage = props => {
 
 
 export default LoginPage;
->>>>>>> master

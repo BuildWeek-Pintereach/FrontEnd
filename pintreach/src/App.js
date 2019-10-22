@@ -2,15 +2,18 @@ import React from 'react';
 
 import './App.css';
 import AddArticle from './components/AddArticle';
-
+import MyBoard from './components/MyBoard';
+import { Route, Link } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
 
-      </header>
-      <AddArticle />
+      </header> */}
+      <Link to="/myboard">MyBoard</Link>
+      <Route path="/addArticle" comp />
+      <Route exact path="/myboard" component={MyBoard} />
     </div>
   );
 }
