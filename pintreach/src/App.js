@@ -1,27 +1,15 @@
-<<<<<<< HEAD
 import React from "react";
 import SignUpPage from "./components/SignUpPage";
 import { Community } from "./components/Community";
 import "./App.css";
-=======
-import React from 'react';
-
-import './App.css';
->>>>>>> master
 
 function App() {
   return (
     <div className="App">
-<<<<<<< HEAD
       {/* <header className="App-header"> */}
       {/* <SignUpPage /> */}
       {/* <Community /> */}
       {/* </header> */}
-=======
-      <header className="App-header">
-
-      </header>
->>>>>>> master
     </div>
   );
 }
