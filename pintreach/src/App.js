@@ -1,15 +1,16 @@
-import React from "react";
-import SignUpPage from "./components/SignUpPage";
-import { Community } from "./components/Community";
-import "./App.css";
+import React from 'react';
+
+import './App.css';
+import AddArticle from './components/AddArticle';
+
 
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header"> */}
-      {/* <SignUpPage /> */}
-      {/* <Community /> */}
-      {/* </header> */}
+      <header className="App-header">
+
+      </header>
+      <AddArticle />
     </div>
   );
 }
