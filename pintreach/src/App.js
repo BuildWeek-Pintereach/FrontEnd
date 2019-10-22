@@ -1,30 +1,23 @@
-import React from 'react';
-
-import './App.css';
-import AddArticle from './components/AddArticle';
-
+import React from "react";
+import { Community } from "./components/Community.js";
+import "./App.css";
+import AddArticle from "./components/AddArticle";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <Community />
+      {/* <header className="App-header">
 
       </header>
-      <AddArticle />
+      <AddArticle /> */}
     </div>
   );
 }
 
 export default App;
 
-
-
-
-
-
-
 // ------ ALL TEST CODE UNDER HERE UNTIL END OF WED
-
 
 //SBH NOTES -- DO NOT DELETE
 
@@ -34,16 +27,15 @@ export default App;
 // import LoginPage from './components/LoginPage';
 // import SignUpPage from './components/SignUpPage';
 // import MyBoard from './components/MyBoard';
-    // <Router>
-    //   <div className="App">
-    //     <div className="app-menu">
-    //         <Link to="/login">Login</Link>
-    //     </div>
-    //     <Switch>
-    //       <PrivateRoute path="/protected" component={MyBoard} />
-    //       <Route path="/login" component={LoginPage} />
-    //       <Route component={LoginPage} />
-    //     </Switch>
-    //   </div>
-    // </Router>
-
+// <Router>
+//   <div className="App">
+//     <div className="app-menu">
+//         <Link to="/login">Login</Link>
+//     </div>
+//     <Switch>
+//       <PrivateRoute path="/protected" component={MyBoard} />
+//       <Route path="/login" component={LoginPage} />
+//       <Route component={LoginPage} />
+//     </Switch>
+//   </div>
+// </Router>

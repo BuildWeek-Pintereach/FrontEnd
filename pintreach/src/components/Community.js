@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
 import styled from "styled-components";
 import { friends } from "./../data.js";
-import { MyBoard } from "./MyBoard";
-import { LoginPage } from "./LoginPage";
+import MyBoard from "./MyBoard";
+import axios from "axios";
+import LoginPage from "./LoginPage";
+import { CommunityList } from "./CommunityList.js";
 
 const Body = styled.div`
   display: flex;
@@ -29,6 +31,11 @@ const Friends = styled.div`
 `;
 const Articles = styled.div`
   padding-right: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 65%;
 `;
 const Logo = styled.h2`
   padding: 0;
@@ -41,7 +48,16 @@ const FriendLink = styled.div`
 
 const ArticleCat = styled.h2`
   background: black;
+  border-radius: 10px;
+  font-size: 3vw;
   color: white;
+  width: 40%;
+`;
+
+const ArticleLink = styled.a`
+  box-sizing: border-box;
+  color: black;
+  width: 90%;
 `;
 
 const FriendsandArticles = styled.div`
@@ -50,79 +66,90 @@ const FriendsandArticles = styled.div`
 `;
 
 export const Community = () => {
-  //   const [friend, setFriend] = useState([]);
+  const [userID, setUserID] = useState();
+  const [user, setUser] = useState();
 
-  //   useEffect(() => {
-  //     setFriend(
+  //   const getFriends = () => {
+  //     axios
+  //       .get("https://pintereach-be.herokuapp.com/:id/articles")
+  //       .then(response => {
+  //         console.log("response", response)
+  //       })
+  //       .catch(error => {
+  //         console.error("Server Error", error);
+  //       });
+  //   };
 
-  //     );
-  //   }, []);
+  //   getFriends();
+  // },[]);
 
   return (
     <Body>
       <SHeader>
         <Logo>Pintreach</Logo>
-        {/* <Link to="/my-board">My Board</Link> */}
+        <Link to="/my-board">My Board</Link>
         <Link to="/community">Community</Link>
-        {/* <Link to="/log-in">Log Out</Link> */}
-        {/* <Route path="/my-board" component={MyBoard} /> */}
+        <Link to="/log-in">Log Out</Link>
+        <Route path="/my-board" component={MyBoard} />
         <Route path="/community" component={Community} />
-        {/* <Route path="/log-in" component={LoginPage} /> */}
+        <Route path="/log-in" component={LoginPage} />
       </SHeader>
       <div className="body">
         <h1>See What Yours Friends Are Looking Into!</h1>
         <FriendsandArticles>
           <Friends>
-            {friends.map(f => {
+            {friends.map((f, index) => {
               return (
-                <FriendLink>
-                  <Link>{f.name}</Link>
-                  <Route path={`/community/${f.name}`} component={Community} />
+                <FriendLink key={index}>
+                  <h3
+                    onClick={e => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setUserID(f.id);
+                      setUser(f);
+                    }}
+                  >
+                    {f.name}
+                  </h3>
                 </FriendLink>
               );
             })}
           </Friends>
           <Articles>
             <ArticleCat>Biology</ArticleCat>
-            {friends.map(f => {
-              return (
-                <FriendLink>
-                  <Link>{f.articles.Biology}</Link>
-                </FriendLink>
-              );
-            })}
+
+            {user &&
+              user.articles.Biology.map(item => {
+                return <Link>{item}</Link>;
+              })}
+
             <ArticleCat>Psychology</ArticleCat>
-            {friends.map(f => {
-              return (
-                <FriendLink>
-                  <Link>{f.articles.Psychology}</Link>
-                </FriendLink>
-              );
-            })}
+
+            {user &&
+              user.articles.Psychology.map(item => {
+                return <Link>{item}</Link>;
+              })}
+
             <ArticleCat>Technology</ArticleCat>
-            {friends.map(f => {
-              return (
-                <FriendLink>
-                  <Link>{f.articles.Technology}</Link>
-                </FriendLink>
-              );
-            })}
+
+            {user &&
+              user.articles.Technology.map(item => {
+                return <Link>{item}</Link>;
+              })}
+
             <ArticleCat>Physics</ArticleCat>
-            {friends.map(f => {
-              return (
-                <FriendLink>
-                  <Link>{f.articles.Physics}</Link>
-                </FriendLink>
-              );
-            })}
+
+            {user &&
+              user.articles.Physics.map(item => {
+                return <Link>{item}</Link>;
+              })}
+
             <ArticleCat>Health</ArticleCat>
-            {friends.map(f => {
-              return (
-                <FriendLink>
-                  <Link>{f.articles.Health}</Link>
-                </FriendLink>
-              );
-            })}
+
+            {user &&
+              user.articles.Health.map(item => {
+                return <Link>{item}</Link>;
+              })}
           </Articles>
         </FriendsandArticles>
       </div>
