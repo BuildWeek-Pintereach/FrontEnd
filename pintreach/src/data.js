@@ -6,21 +6,11 @@ export let friends = [
     name: "Ben",
     email: "ben@lambdaschool.com",
     articles: {
-      Biology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Psychology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Technology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Physics: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Health: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ]
+      Biology: [`Ben.Biology`],
+      Psychology: [`Ben.psychology`],
+      Technology: [`Ben.technology`],
+      Physics: [`Ben.physics`],
+      Health: [`Ben.health`]
     }
   },
   {
@@ -28,21 +18,11 @@ export let friends = [
     name: "Amanda",
     email: "amanda@lambdaschool.com",
     articles: {
-      Biology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Psychology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Technology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Physics: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Health: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ]
+      Biology: [`Amanda.Biology`],
+      Psychology: [`Amanda.psychology`],
+      Technology: [`Amanda.technology`],
+      Physics: [`Amanda.physics`],
+      Health: [`Amanda.health`]
     }
   },
   {
@@ -50,21 +30,11 @@ export let friends = [
     name: "Ryan",
     email: "ryan@lambdaschool.com",
     articles: {
-      Biology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Psychology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Technology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Physics: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Health: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ]
+      Biology: [`Ryan.Biology`],
+      Psychology: [`Ryan.psychology`],
+      Technology: [`Ryan.technology`],
+      Physics: [`Ryan.physics`],
+      Health: [`Ryan.health`]
     }
   },
   {
@@ -72,21 +42,11 @@ export let friends = [
     name: "Sara",
     email: "sara@lambdaschool.com",
     articles: {
-      Biology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Psychology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Technology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Physics: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Health: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ]
+      Biology: [`Sara.Biology`],
+      Psychology: [`Sara.psychology`],
+      Technology: [`Sara.technology`],
+      Physics: [`Sara.physics`],
+      Health: [`Sara.health`]
     }
   },
   {
@@ -94,21 +54,11 @@ export let friends = [
     name: "Sean",
     email: "sean@lambdaschool.com",
     articles: {
-      Biology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Psychology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Technology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Physics: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Health: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ]
+      Biology: [`Sean.Biology`],
+      Psychology: [`Sean.psychology`],
+      Technology: [`Sean.technology`],
+      Physics: [`Sean.physics`],
+      Health: [`Sean.health`]
     }
   },
   {
@@ -116,21 +66,11 @@ export let friends = [
     name: "Michelle",
     email: "michelle@gmail.com",
     articles: {
-      Biology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Psychology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Technology: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Physics: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ],
-      Health: [
-        `https://books.google.com/books?hl=en&lr=&id=M5gN-ku_yEkC&oi=fnd&pg=PP1&dq=science&ots=_9w5dZvRq6&sig=NKRvnGYKgTPuwu2Fjqzzh6TPfVE`
-      ]
+      Biology: [`Michelle.Biology`],
+      Psychology: [`Michelle.psychology`],
+      Technology: [`Michelle.technology`],
+      Physics: [`Michelle.physics`],
+      Health: [`Michelle.health`]
     }
   }
 ];
