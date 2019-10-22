@@ -1,15 +1,4 @@
 import React, { useState } from "react";
-<<<<<<< HEAD
-import { Route, Link } from "react-router-dom";
-
-export const LoginPage = () => {
-  return (
-    <div>
-      <h2>Login Page</h2>
-    </div>
-  );
-};
-=======
 import styled from "styled-components";
 // import { axiosWithAuth } from '../utils/axiosWithAuth';
 // import PrivateRoute from '../utils/PrivateRoute';
@@ -91,4 +80,3 @@ const LoginPage = props => {
 
 
 export default LoginPage;
->>>>>>> master
