@@ -48,7 +48,6 @@ const FriendLink = styled.div`
 
 const ArticleCat = styled.h2`
   background: black;
-  border-radius: 10px;
   font-size: 3vw;
   color: white;
   width: 40%;
@@ -69,19 +68,16 @@ export const Community = () => {
   const [userID, setUserID] = useState();
   const [user, setUser] = useState();
 
-  //   const getFriends = () => {
+  //   useEffect(() => {
   //     axios
-  //       .get("https://pintereach-be.herokuapp.com/:id/articles")
+  //       .get(`https://pintereach-be.herokuapp.com/${id}/articles`)
   //       .then(response => {
-  //         console.log("response", response)
+  //         console.log("response", response);
   //       })
   //       .catch(error => {
   //         console.error("Server Error", error);
   //       });
-  //   };
-
-  //   getFriends();
-  // },[]);
+  //   }, []);
 
   return (
     <Body>
