@@ -1,6 +1,8 @@
 import React from 'react';
 
 import './App.css';
+import AddArticle from './components/AddArticle';
+
 
 function App() {
   return (
@@ -8,6 +10,7 @@ function App() {
       <header className="App-header">
 
       </header>
+      <AddArticle />
     </div>
   );
 }
