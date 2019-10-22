@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 // import { axiosWithAuth } from '../utils/axiosWithAuth';
 
+
 const StyledSignUp = styled.div`
 
 .sign-up-form {
@@ -30,8 +31,7 @@ const StyledSignUp = styled.div`
 const SignUpPage = props => {
   console.log(props);
     const [signup, setSignup] = useState({
-        fname: '',
-        lname: '',
+        username: '',
         email: '',
         password: ''
     });
@@ -44,39 +44,36 @@ const SignUpPage = props => {
         )
     };
 
-    // const onSubmit = e => {
-    //     e.preventDefault();
-    //     axiosWithAuth()
-    //     .post('api/login', signup)
-    //     .then(res => {
-    //         localStorage.setItem('token', res.data.payload);
-    //         props.history.push('/protected');
-    //     })
-    //         .catch(err => console.log('login error', err.response));
-    // }
+    const onSubmit = e => {
+        e.preventDefault();
+        // axiosWithAuth()
+        // .post('', signup)
+        // .then(res => {
+        //     localStorage.setItem('token', res.data.payload);
+        //     props.history.push('/login');
+        // })
+        //     .catch(err => console.log('login error', err.response));
+    }
 
     
 
   return (
     <StyledSignUp>
-      <form className="sign-up-form">
-        <label htmlFor="first-name">First Name</label>
-        <input type="text" placeholder="First name" />
+      <form className="sign-up-form" onSubmit={onSubmit}>
+        <label htmlFor="username">Create a Username: </label>
+        <input type="text" placeholder="Username..." value={signup.username} onChange={handleChanges} required/>
         <br />
-        <label htmlFor="last-name">Last Name</label>
-        <input type="text" placeholder="Last name" />
+        <label htmlFor="email">Email Address: </label>
+        <input type="text" placeholder="Email Address..." value={signup.email} onChange={handleChanges} required/>
         <br />
-        <label htmlFor="email">Email Address</label>
-        <input type="text" placeholder="Email Address" />
-        <br />
-        <label htmlFor="password">Password</label>
-        <input type="text" placeholder="Password" />
+        <label htmlFor="password">Password: </label>
+        <input type="text" placeholder="Password..." value={signup.password} onChange={handleChanges} required/>
         <br />
 
         <button type="submit">Sign Up</button>
         <p>
           Aleady have an account? <br />
-          <a href='#'>Log in here</a>
+          <a href='/login'>Log in here</a>
         </p>
       </form>
     </StyledSignUp>
