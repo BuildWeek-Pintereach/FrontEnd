@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Route, Link } from "react-router-dom";
 import styled from "styled-components";
 import { friends } from "./../data.js";
+import { MyBoard } from "./MyBoard";
+import { LoginPage } from "./LoginPage";
 
 const Body = styled.div`
   display: flex;
@@ -15,7 +17,7 @@ const SHeader = styled.div`
   padding: 0 3% 0 3%;
   background: white;
   color: black;
-  height: 30%;
+  height: 60px;
 `;
 const Friends = styled.div`
   display: flex;
@@ -25,7 +27,9 @@ const Friends = styled.div`
   padding: 0 0 0 5%;
   width: 35%;
 `;
-const Articles = styled.div``;
+const Articles = styled.div`
+  padding-right: 4%;
+`;
 const Logo = styled.h2`
   padding: 0;
   margin: 0;
@@ -58,12 +62,12 @@ export const Community = () => {
     <Body>
       <SHeader>
         <Logo>Pintreach</Logo>
-        {/* <Link to="/my-board">My Board</Link> */}
+        <Link to="/my-board">My Board</Link>
         <Link to="/community">Community</Link>
-        {/* <Link to="/log-in">Log Out</Link> */}
-        {/* <Route path="/my-board" component={MyBoard} /> */}
+        <Link to="/log-in">Log Out</Link>
+        <Route path="/my-board" component={MyBoard} />
         <Route path="/community" component={Community} />
-        {/* <Route path="/log-in" component={LoginPage} /> */}
+        <Route path="/log-in" component={LoginPage} />
       </SHeader>
       <div className="body">
         <h1>See What Yours Friends Are Looking Into!</h1>
@@ -73,6 +77,7 @@ export const Community = () => {
               return (
                 <FriendLink>
                   <Link>{f.name}</Link>
+                  <Route path={`/community/${f.name}`} component={Community} />
                 </FriendLink>
               );
             })}
