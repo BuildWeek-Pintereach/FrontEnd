@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './App.css';
+import TestAdd from './components/TestAdd';
+import AddArticle from './components/AddArticle';
+import Article from './components/Article';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-
-      </header>
-    </div>
-  );
+return(
+  <TestAdd />
+)
 }
 
 export default App;

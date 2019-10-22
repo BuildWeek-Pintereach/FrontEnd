@@ -14,7 +14,7 @@ function EditArticle(props) {
   const handleDelete = e => {
     e.preventDefault();
     axiosWithAuth()
-      .delete(``)
+      .delete(`https://pintereach-be.herokuapp.com/article/:id`)
       .then(res => {
         props.updateArticles(res.data);
         props.history.push("/article-list");

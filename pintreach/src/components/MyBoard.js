@@ -22,7 +22,7 @@ function MyBoard(props) {
           className="article-card"
           key={article.id}
         >
-          <h2>{article.category}</h2>
+          <h2>Category: {article.category}</h2>
           <h2>{article.title}</h2>
           <h2>{article.link}</h2>
         </div>
