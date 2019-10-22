@@ -1,58 +1,57 @@
 import React, { useState } from 'react';
+import Article from './Article';
 
 
-const AddArticle = () => {
-    const [articles, setArticles] = useState({
-        name: "",
-        email: "",
-        link: ""
+const AddArticle = props => {
+    const [article, setArticle] = useState({
+        author: "",
+        title: "",
+        category: "",
+        url: ""
+
     });
-    const addNewArticle = article => {
-        setArticles({ articles: [...articles, article] });
-    };
+
+
     const changeHandler = event => {
-        setArticles({ ...articles, [event.target.name]: event.target.value });
-        console.log(event.target.name);
+        setArticle({ ...article, [event.target.name]: event.target.value });
+        console.log(event.target.value);
 
     }
     const submitForm = event => {
         event.preventDefault();
-        addNewArticle(articles);
-    }
+        props.addNewArticle(article);
+        setArticle({ author: "", title: "", category: "", url: "" });
+    };
 
     return (
         <>
             <form onSubmit={submitForm}>
                 <h1>Add an Article</h1>
-                <label htmlFor="Name">Name</label>
-                <input type="text" placeholder="name" onChange={changeHandler} />
+                <label htmlFor="author">Author</label>
+                <input id="Date.now()" type="text" placeholder="Author" name="author" onChange={changeHandler} value={props.author} />
 
-                <label htmlFor="Email">Email</label>
-                <input type="email" placeholder="email" onChange={changeHandler} />
-                <label htmlFor="category">Category</label>
-                <input type="select" className="category-select" name="category" placeholder="Category" />
-                <option>Please Choose Category</option>
-                <option value="biology">Biology</option>
-                <option value="psychology">Psychology</option>
-                <option value="Technology">Technology></option>
-                <option value="physics">Physics</option>
-                <option value="Health">Health</option> />
+                <label htmlFor="title">Title</label>
+                <input id="Date.now()" type="text" placeholder="Title" name="title" onChange={changeHandler} value={props.title} />
+                <label>Category:
+                <select value={props.value} name="category" onChange={changeHandler}>
+                        <option>Please Choose Category</option>
+                        <option value="biology">Biology</option>
+                        <option value="psychology">Psychology</option>
+                        <option value="Technology">Technology</option>
+                        <option value="physics">Physics</option>
+                        <option value="Health">Health</option>
+                    </select>
+                </label>
 
-                <label htmlFor="Link">Link/Url</label>
-                <input type="url" name="article" placeholder="https://abc.com" onChange={changeHandler} />
+
+                <label htmlFor="Link">Link:</label>
+                <input id="Date.now()" type="url" name="url" placeholder="https://abc.com" onChange={changeHandler} value={props.link} />
                 <button type="submit">Add Article</button>
             </form>
 
 
 
-            {articles.map(article => (
-                <ul key={article.id}>
-                    <li>title:{article.name}</li>
-                    <li>author:{article.email}</li>
-                    <li>link:{article.link}</li>
-                    <li>description:{article.description}</li>
-                </ul>
-            ))}
+
         </>
     );
 };

@@ -3,6 +3,7 @@ import SignUpPage from './components/SignUpPage';
 import './App.css';
 import AddArticle from './components/AddArticle';
 
+
 function App() {
   return (
     <div className="App">
