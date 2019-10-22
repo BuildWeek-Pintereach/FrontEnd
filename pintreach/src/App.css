@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color:lightsteelblue;
+  /* background-color:lightsteelblue; */
 }
 
 .App-logo {
@@ -14,18 +14,11 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-    
 }
 
 .App-link {
   color: #09d3ac;
 }
-
-
-
-
-
-
 
 /* SBH -- this code will be implemented last
 height: 500px;
