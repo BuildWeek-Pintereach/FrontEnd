@@ -14,7 +14,7 @@ function EditArticle(props) {
   const handleDelete = e => {
     e.preventDefault();
     // axios
-    //   .delete(`https://pintereach-be.herokuapp.com/article/${id}`)
+    //   .delete(`/article/${id}`)
     //    console.log('delete call is firing')
     //   .then(res => {
     //     props.updateArticles(res.data);

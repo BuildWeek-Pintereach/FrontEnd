@@ -96,7 +96,7 @@ function MyBoard(props) {
 
     }
 
-    console.log(articles)
+    console.log(articles, addNewArticle)
     return (
 
         <div className="myboard">
