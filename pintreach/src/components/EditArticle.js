@@ -1,5 +1,5 @@
 import React from "react";
-import { axiosWithAuth } from "axios";
+import axios from 'axios';
 
 
 function EditArticle(props) {
@@ -13,13 +13,14 @@ function EditArticle(props) {
 
   const handleDelete = e => {
     e.preventDefault();
-    axiosWithAuth()
-      .delete(`https://pintereach-be.herokuapp.com/article/${id}`)
-      .then(res => {
-        props.updateArticles(res.data);
-        props.history.push("/article-list");
-      })
-      .catch(err => console.log(err));
+    // axios
+    //   .delete(`https://pintereach-be.herokuapp.com/article/${id}`)
+    //    console.log('delete call is firing')
+    //   .then(res => {
+    //     props.updateArticles(res.data);
+    //     props.history.push("/myboard");
+    //   })
+    //   .catch(err => console.log(err));
   };
 
   return (

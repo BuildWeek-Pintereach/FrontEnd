@@ -3,17 +3,18 @@ import React from 'react';
 import './App.css';
 import AddArticle from './components/AddArticle';
 import MyBoard from './components/MyBoard';
+import Community from './components/Community';
 import { Route, Link } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
       {/* <header className="App-header">
-
       </header> */}
-      <Link to="/myboard">MyBoard</Link>
-      <Route path="/addArticle" comp />
+      <Link to="/myboard">My Board</Link>
+      <Route path="/add-article" component={AddArticle} />
       <Route exact path="/myboard" component={MyBoard} />
+      <Route path='/community' component={Community}/>
     </div>
   );
 }
@@ -25,7 +26,8 @@ export default App;
 //SBH NOTES -- DO NOT DELETE
 
 // import React, { useState } from "react";
-// import { Route, Link } from "react-router-dom";
+// import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+// import PrivateRoute from './utils/PrivateRoute';
 // import "./App.css";
 // import SignUpPage from "./components/SignUpPage";
 // import MyBoard from "./components/MyBoard";
@@ -33,17 +35,24 @@ export default App;
 // import data from "./data";
 // import Community from "./components/Community";
 // import EditArticle from "./components/EditArticle";
+// import AddArticle from "./components/AddArticle";
 
 // function App() {
 //   return (
-//     <div className="App">
-//       <Route exact path="/" component={SignUpPage} />
-//       <Route path="/log-in" component={LoginPage} />
-//       <Route exact path="/edit-article" component={EditArticle} />
-//       <Route exact path="/myboard" component={MyBoard} />  
-//       <Route exact path="/community" component={Community} />
-//  
+//      <div className="App">
+//        <Router>
+//         <Switch>
+//           <Route exact path="/" component={SignUpPage} />
+//           <Route path="/log-in" component={LoginPage} />
+//           <PrivateRoute path="/myboard" component={MyBoard} /> 
+//           <Route exact path="/edit-article" component={EditArticle} />
+//           <Route path="/add-article" component={AddArticle} />
+//            
+//           <Route exact path="/community" component={Community} />
+//        </Switch>
+//       </Router> */}
 //     </div>
+
 //   );
 // }
 

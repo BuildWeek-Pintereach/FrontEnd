@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import AddArticle from './AddArticle';
 import { Link, Route } from 'react-router-dom';
-// import Community from './Community';
+import Community from './Community';
 import LoginPage from './LoginPage';
 import styled from 'styled-components';
 
@@ -83,14 +82,6 @@ main{
 `;
 
 
-
-//this page needs:
-//The code in ddArticle is going in here--and the form + action is staying in AddArticle
-// --A "Welcome" message--Ideally one that says welcome {username} (ideal but not required)
-
-// --Add 'Edit Article' and 'Delete Article' Buttons on MyBoard
-// --Link to Community page (do we need edit and delete buttons here???)
-
 function MyBoard(props) {
 
     const [articles, setArticles] = useState([{
@@ -98,6 +89,7 @@ function MyBoard(props) {
     }, { author: 'Jessica Parker', title: 'The HealthInsider', category: 'Health', url: 'https://abc.com' },
     { author: 'Sammy Williams', title: 'The Psychologist and ME', category: 'Health', url: 'https://abc.com' }
     ])
+
     const addNewArticle = article => {
         setArticles([...articles, article])
         console.log(article)
@@ -119,37 +111,32 @@ function MyBoard(props) {
 
                         </div>
                         <nav>
-                            <Link to="/AddArticle">AddArticle</Link>
-                            <a href="#">Community</a>
-                            {/* <Link to="/community">Community</Link> */}
-                            <Link to="/log-in">Log Out</Link>
+                            <Link to="/add-article">Add Article</Link>
+                            <a href="/community">Community</a>
+                            <Link to="/login">Log Out</Link>
 
-                            {/* <Route path="/my-board" component={MyBoard} />
-                            {/* <Route path="/community" component={Community} /> */}
-                            {/* <Route path="/log-in" component={LoginPage} /> */}
+                            <Route path="/my-board" component={MyBoard} />
+                            <Route path="/community" component={Community} />
+                            <Route path="/log-in" component={LoginPage} />
                         </nav>
                     </div>
                 </StyledMyBoard>
             </header>
             <StyledMain>
-                <main>
-
-                    {articles.map(article => {
-                        return (
-
-                            <div key={article.author}>
-                                <h1>author:{article.author}</h1>
-                                <p>title:{article.title}</p>
-                                <p>category:{article.category}</p>
-                                <p>url:{article.url}</p>
-                            </div>
-
-                        )
-                    })}
-                </main>
-            </StyledMain>
-            <AddArticle addNewArticle={addNewArticle} />
-            <button>Edit New Article</button>
+              <main>
+                {articles.map(article => {
+                  return (
+                    <div key={article.author}>
+                      <h1>author:{article.author}</h1>
+                      <p>title:{article.title}</p>
+                      <p>category:{article.category}</p>
+                      <p>url:{article.url}</p>
+                    </div>
+                  )
+                })}
+              </main>
+          </StyledMain>
+            {/* <button>Edit Article </button> */}
         </div>
     );
 
