@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Link } from 'react-router-dom';
+// import axios from 'axios';
 
 
 const AddArticle = props => {
@@ -7,7 +7,7 @@ const AddArticle = props => {
         author: "",
         title: "",
         category: "",
-        url: ""
+        url: "",
 
     });
 
@@ -19,7 +19,14 @@ const AddArticle = props => {
     }
     const submitForm = event => {
         event.preventDefault();
-        props.addNewArticle(article);
+        // axios
+        // .post(`https://pintereach-be.herokuapp.com/article/${article.id}`)
+        // console.log('is posting')
+        // .then(res => {
+        //     props.history.push('myboard', res.data)
+        // })
+        // .catch(err => console.log("it did not work", err.response));
+        console.log('submit is working')
         setArticle({ author: "", title: "", category: "", url: "" });
     };
 

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
 import styled from "styled-components";
 import { friends } from "./../data.js";
-import { MyBoard } from "./MyBoard";
-import { LoginPage } from "./LoginPage";
+import MyBoard from "./MyBoard";
+import LoginPage from "./LoginPage";
+import axios from 'axios';
 
 const Body = styled.div`
   display: flex;
@@ -66,7 +67,7 @@ export const Community = () => {
   const [userID, setUserID] = useState();
   const [user, setUser] = useState();
 
-  //   useEffect(() => {
+    useEffect(() => {
   //     axios
   //       .get(`https://pintereach-be.herokuapp.com/${id}/articles`)
   //       .then(response => {
@@ -75,7 +76,7 @@ export const Community = () => {
   //       .catch(error => {
   //         console.error("Server Error", error);
   //       });
-  //   }, []);
+    }, []);
 
   return (
     <Body>
@@ -150,3 +151,5 @@ export const Community = () => {
     </Body>
   );
 };
+
+export default Community;
