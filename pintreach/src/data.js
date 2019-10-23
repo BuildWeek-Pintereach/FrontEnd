@@ -42,7 +42,9 @@ export let friends = [
     name: "Sara",
     email: "sara@lambdaschool.com",
     articles: {
-      Biology: ["sara.biology"],
+      Biology: [
+        "sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssara.biology"
+      ],
       Psychology: ["sara.psychology"],
       Technology: ["sara.technology"],
       Physics: ["sara.physics"],

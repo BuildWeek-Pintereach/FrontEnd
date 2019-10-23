@@ -56,12 +56,23 @@ const ArticleCat = styled.h2`
 const ArticleLink = styled.a`
   box-sizing: border-box;
   color: black;
-  width: 90%;
+  max-width: 90%;
 `;
 
 const FriendsandArticles = styled.div`
   display: flex;
   flex-direction: row;
+  max-width: 100%;
+`;
+
+const LinkDiv = styled.div`
+  max-width: 50%;
+  a {
+    text-align: center;
+    color: red;
+    text-decoration: none;
+    word-wrap: break-word;
+  }
 `;
 
 export const Community = () => {
@@ -113,39 +124,40 @@ export const Community = () => {
           </Friends>
           <Articles>
             <ArticleCat>Biology</ArticleCat>
-
-            {user &&
-              user.articles.Biology.map(item => {
-                return <Link>{item}</Link>;
-              })}
-
+            <LinkDiv>
+              {user &&
+                user.articles.Biology.map(item => {
+                  return <a>{item}</a>;
+                })}
+            </LinkDiv>
             <ArticleCat>Psychology</ArticleCat>
-
-            {user &&
-              user.articles.Psychology.map(item => {
-                return <Link>{item}</Link>;
-              })}
-
+            <LinkDiv>
+              {user &&
+                user.articles.Psychology.map(item => {
+                  return <Link>{item}</Link>;
+                })}
+            </LinkDiv>
             <ArticleCat>Technology</ArticleCat>
-
-            {user &&
-              user.articles.Technology.map(item => {
-                return <Link>{item}</Link>;
-              })}
-
+            <LinkDiv>
+              {user &&
+                user.articles.Technology.map(item => {
+                  return <Link>{item}</Link>;
+                })}
+            </LinkDiv>
             <ArticleCat>Physics</ArticleCat>
-
-            {user &&
-              user.articles.Physics.map(item => {
-                return <Link>{item}</Link>;
-              })}
-
+            <LinkDiv>
+              {user &&
+                user.articles.Physics.map(item => {
+                  return <Link>{item}</Link>;
+                })}
+            </LinkDiv>
             <ArticleCat>Health</ArticleCat>
-
-            {user &&
-              user.articles.Health.map(item => {
-                return <Link>{item}</Link>;
-              })}
+            <LinkDiv>
+              {user &&
+                user.articles.Health.map(item => {
+                  return <Link>{item}</Link>;
+                })}
+            </LinkDiv>
           </Articles>
         </FriendsandArticles>
       </div>
