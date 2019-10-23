@@ -42,12 +42,14 @@ const SignUpPage = props => {
             [e.target.name]: e.target.value
             }
         )
+        console.log('handlechange is firing')
     };
 
     const onSubmit = e => {
         e.preventDefault();
         // axiosWithAuth()
         // .post('', signup)
+          // console.log('onsubmit is firing')
         // .then(res => {
         //     localStorage.setItem('token', res.data.payload);
         //     props.history.push('/login');

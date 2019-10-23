@@ -1,16 +1,20 @@
-import React from "react";
-import { Community } from "./components/Community.js";
-import "./App.css";
-import AddArticle from "./components/AddArticle";
+import React from 'react';
+
+import './App.css';
+import AddArticle from './components/AddArticle';
+import MyBoard from './components/MyBoard';
+import Community from './components/Community';
+import { Route, Link } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <Community />
       {/* <header className="App-header">
-
-      </header>
-      <AddArticle /> */}
+      </header> */}
+      <Link to="/myboard">My Board</Link>
+      <Route path="/add-article" component={AddArticle} />
+      <Route exact path="/myboard" component={MyBoard} />
+      <Route path='/community' component={Community}/>
     </div>
   );
 }
@@ -21,21 +25,37 @@ export default App;
 
 //SBH NOTES -- DO NOT DELETE
 
-// import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-// import PrivateRoute from "./components/PrivateRoute";
-// import SignUpPage from './components/SignUpPage';
-// import LoginPage from './components/LoginPage';
-// import SignUpPage from './components/SignUpPage';
-// import MyBoard from './components/MyBoard';
-// <Router>
-//   <div className="App">
-//     <div className="app-menu">
-//         <Link to="/login">Login</Link>
+// import React, { useState } from "react";
+// import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+// import PrivateRoute from './utils/PrivateRoute';
+// import "./App.css";
+// import SignUpPage from "./components/SignUpPage";
+// import MyBoard from "./components/MyBoard";
+// import LoginPage from "./components/LoginPage";
+// import data from "./data";
+// import Community from "./components/Community";
+// import EditArticle from "./components/EditArticle";
+// import AddArticle from "./components/AddArticle";
+
+// function App() {
+//   return (
+//      <div className="App">
+//        <Router>
+//         <Switch>
+//           <Route exact path="/" component={SignUpPage} />
+//           <Route path="/log-in" component={LoginPage} />
+//           <PrivateRoute path="/myboard" component={MyBoard} /> 
+//           <Route exact path="/edit-article" component={EditArticle} />
+//           <Route path="/add-article" component={AddArticle} />
+//            
+//           <Route exact path="/community" component={Community} />
+//        </Switch>
+//       </Router> */}
 //     </div>
-//     <Switch>
-//       <PrivateRoute path="/protected" component={MyBoard} />
-//       <Route path="/login" component={LoginPage} />
-//       <Route component={LoginPage} />
-//     </Switch>
-//   </div>
-// </Router>
+
+//   );
+// }
+
+// export default App;
+
+
