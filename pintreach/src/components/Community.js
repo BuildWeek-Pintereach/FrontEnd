@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
 import styled from "styled-components";
 import { friends } from "./../data.js";
-import MyBoard from "./MyBoard";
-import axios from "axios";
-import LoginPage from "./LoginPage";
-import { CommunityList } from "./CommunityList.js";
+import { MyBoard } from "./MyBoard";
+import { LoginPage } from "./LoginPage";
 
 const Body = styled.div`
   display: flex;

@@ -1,16 +1,19 @@
-import React from "react";
-import { Community } from "./components/Community.js";
-import "./App.css";
-import AddArticle from "./components/AddArticle";
+import React from 'react';
+
+import './App.css';
+import AddArticle from './components/AddArticle';
+import MyBoard from './components/MyBoard';
+import { Route, Link } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <Community />
       {/* <header className="App-header">
 
-      </header>
-      <AddArticle /> */}
+      </header> */}
+      <Link to="/myboard">MyBoard</Link>
+      <Route path="/addArticle" comp />
+      <Route exact path="/myboard" component={MyBoard} />
     </div>
   );
 }
