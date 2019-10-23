@@ -1,26 +1,23 @@
-import React, { useState } from 'react';
-
-import './App.css';
-import TestAdd from './components/TestAdd';
-import AddArticle from './components/AddArticle';
-import Article from './components/Article';
+import React from "react";
+import { Community } from "./components/Community.js";
+import "./App.css";
+import AddArticle from "./components/AddArticle";
 
 function App() {
-return(
-  <TestAdd />
-)
+  return (
+    <div className="App">
+      <Community />
+      {/* <header className="App-header">
+
+      </header>
+      <AddArticle /> */}
+    </div>
+  );
 }
 
 export default App;
 
-
-
-
-
-
-
 // ------ ALL TEST CODE UNDER HERE UNTIL END OF WED
-
 
 //SBH NOTES -- DO NOT DELETE
 
