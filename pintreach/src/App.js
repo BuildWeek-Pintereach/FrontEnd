@@ -1,10 +1,10 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import { Route, Link } from "react-router-dom";
 import "./App.css";
+import friends from "./data.js";
 import AddArticle from "./components/AddArticle";
 import MyBoard from "./components/MyBoard";
 import Community from "./components/Community";
-import { Route, Link } from "react-router-dom";
 
 function App() {
   return (
