@@ -1,46 +1,43 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
 const AddArticle = props => {
     const [article, setArticle] = useState({
-        author: "",
         title: "",
-        category: "",
         url: "",
-
+        type:''
     });
 
 
-    const changeHandler = event => {
-        setArticle({ ...article, [event.target.name]: event.target.value });
-        console.log(event.target.value);
+    const changeHandler = e => {
+        setArticle({ ...article, [e.target.name]: e.target.value });
+        // console.log(event.target.value);
 
     }
-    const submitForm = event => {
-        event.preventDefault();
-        // axios
-        // .post(`https://pintereach-be.herokuapp.com/article/${article.id}`)
+    const submitForm = e => {
+        e.preventDefault();
+        axiosWithAuth()
+        .post(`/ck21z8u7t00001xdulbmu8dfs/article`, article)
         // console.log('is posting')
-        // .then(res => {
-        //     props.history.push('myboard', res.data)
-        // })
-        // .catch(err => console.log("it did not work", err.response));
-        console.log('submit is working')
-        setArticle({ author: "", title: "", category: "", url: "" });
+        .then(res => {
+            props.history.push('myboard', res.data)
+        })
+        .catch(err => console.log("it did not work", err.response));  
     };
 
     return (
-        <>
+        <div>
+            <h1>Add an Article</h1>
             <form onSubmit={submitForm}>
-                <h1>Add an Article</h1>
-                <label htmlFor="author">Author</label>
-                <input id="Date.now()" type="text" placeholder="Author" name="author" onChange={changeHandler} value={props.author} />
+                
+                {/* <label htmlFor="author">Author</label>
+                <input id="Date.now()" type="text" placeholder="Author" name="author" onChange={changeHandler} value={props.author} /> */}
 
                 <label htmlFor="title">Title</label>
-                <input id="Date.now()" type="text" placeholder="Title" name="title" onChange={changeHandler} value={props.title} />
+                <input id='Date.now()' type="text" placeholder="Title" name="title" onChange={changeHandler} value={props.title} />
                 <label>Category:
-                <select value={props.value} name="category" onChange={changeHandler}>
+                <select value={props.value} name="type" onChange={changeHandler}>
                         <option>Please Choose Category</option>
                         <option value="biology">Biology</option>
                         <option value="psychology">Psychology</option>
@@ -51,7 +48,7 @@ const AddArticle = props => {
                 </label>
 
 
-                <label htmlFor="Link">Link:</label>
+                <label htmlFor="Link">URL: </label>
                 <input id="Date.now()" type="url" name="url" placeholder="https://abc.com" onChange={changeHandler} value={props.link} />
                 <button type="submit">Add Article</button>
             </form>
@@ -59,7 +56,7 @@ const AddArticle = props => {
 
 
 
-        </>
+        </div>
     );
 };
 export default AddArticle;

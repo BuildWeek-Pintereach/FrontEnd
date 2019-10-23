@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
-// import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+import axios from 'axios';
 
 
 const StyledSignUp = styled.div`
@@ -29,9 +31,10 @@ const StyledSignUp = styled.div`
 `;
 
 const SignUpPage = props => {
-  console.log(props);
+  // console.log(props);
     const [signup, setSignup] = useState({
-        username: '',
+        firstname: '',
+        lastname:'',
         email: '',
         password: ''
     });
@@ -42,19 +45,19 @@ const SignUpPage = props => {
             [e.target.name]: e.target.value
             }
         )
-        console.log('handlechange is firing')
+        // console.log('handlechange is firing')
     };
 
     const onSubmit = e => {
         e.preventDefault();
-        // axiosWithAuth()
-        // .post('', signup)
+        axios
+        .post( 'https://pintereach-be.herokuapp.com/register', signup)
           // console.log('onsubmit is firing')
-        // .then(res => {
-        //     localStorage.setItem('token', res.data.payload);
-        //     props.history.push('/login');
-        // })
-        //     .catch(err => console.log('login error', err.response));
+        .then(res => {
+            localStorage.setItem('token', res.data.payload);
+            props.history.push('/login');
+        })
+            .catch(err => console.log('Signup error -- try again.', err.response));
     }
 
     
@@ -62,20 +65,23 @@ const SignUpPage = props => {
   return (
     <StyledSignUp>
       <form className="sign-up-form" onSubmit={onSubmit}>
-        <label htmlFor="username">Create a Username: </label>
-        <input type="text" placeholder="Username..." value={signup.username} onChange={handleChanges} required/>
+        <label htmlFor="first-name">First Name: </label>
+        <input type="text" name='firstname' placeholder="John..." firstname={signup.firstname} onChange={handleChanges} required/>
+        <br />
+        <label htmlFor="last-name">Last Name: </label>
+        <input type="text" name='lastname' placeholder="Doe..." lastname={signup.lastname} onChange={handleChanges} required/>
         <br />
         <label htmlFor="email">Email Address: </label>
-        <input type="text" placeholder="Email Address..." value={signup.email} onChange={handleChanges} required/>
+        <input type="text" name='email' placeholder="Email Address..." email={signup.email} onChange={handleChanges} required/>
         <br />
         <label htmlFor="password">Password: </label>
-        <input type="text" placeholder="Password..." value={signup.password} onChange={handleChanges} required/>
+        <input type="text" name='password' placeholder="Password..." password={signup.password} onChange={handleChanges} required/>
         <br />
 
         <button type="submit">Sign Up</button>
         <p>
           Aleady have an account? <br />
-          <a href='/login'>Log in here</a>
+          <Link to='/login'>Log in here</Link>{" "}
         </p>
       </form>
     </StyledSignUp>
