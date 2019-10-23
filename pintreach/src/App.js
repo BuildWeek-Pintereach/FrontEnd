@@ -1,20 +1,21 @@
-import React from 'react';
+import React from "react";
 
-import './App.css';
-import AddArticle from './components/AddArticle';
-import MyBoard from './components/MyBoard';
-import Community from './components/Community';
-import { Route, Link } from 'react-router-dom';
+import "./App.css";
+import AddArticle from "./components/AddArticle";
+import MyBoard from "./components/MyBoard";
+import Community from "./components/Community";
+import { Route, Link } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       {/* <header className="App-header">
       </header> */}
-      <Link to="/myboard">My Board</Link>
+      {/* <Link to="/myboard">My Board</Link>
       <Route path="/add-article" component={AddArticle} />
       <Route exact path="/myboard" component={MyBoard} />
-      <Route path='/community' component={Community}/>
+      <Route path='/community' component={Community}/> */}
+      <Community />
     </div>
   );
 }
@@ -44,10 +45,10 @@ export default App;
 //         <Switch>
 //           <Route exact path="/" component={SignUpPage} />
 //           <Route path="/log-in" component={LoginPage} />
-//           <PrivateRoute path="/myboard" component={MyBoard} /> 
+//           <PrivateRoute path="/myboard" component={MyBoard} />
 //           <Route exact path="/edit-article" component={EditArticle} />
 //           <Route path="/add-article" component={AddArticle} />
-//            
+//
 //           <Route exact path="/community" component={Community} />
 //        </Switch>
 //       </Router> */}
@@ -57,5 +58,3 @@ export default App;
 // }
 
 // export default App;
-
-
