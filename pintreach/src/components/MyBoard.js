@@ -3,6 +3,7 @@ import { Link, Route } from 'react-router-dom';
 import Community from './Community';
 import LoginPage from './LoginPage';
 import styled from 'styled-components';
+import AddArticle from "./AddArticle";
 
 const StyledMyBoard = styled.div`
 .outer{
@@ -19,6 +20,8 @@ const StyledMyBoard = styled.div`
     border-bottom: 3px solid rgba(107, 78, 113, 1);
     top: 0%;
     max-height: 19vh;
+    @media  (max-width: 375px){font-size: 2rem; display:flex; flex-direction: column;}
+    @media (max-width: 768px){font-size: 2rem;}
     };
     
     
@@ -28,10 +31,14 @@ const StyledMyBoard = styled.div`
         h1{
             color:rgba(245, 221, 221, 1);
             font-size: 3rem;
+            @media  (max-width: 375px){font-size: 1rem; display: flex; flex-direction:column;}
+            @media (max-width: 768px){font-size: 2rem;}
         }
         h2{
             color:rgba(245, 221, 221, 1);
             font-size: 2rem;
+            @media (max-width: 375px){font-size: 2rem; display: flex; flex-direction: column;}
+            @media  (max-width:768px){font-size: 3rem;}
         }
         
     
@@ -55,7 +62,9 @@ const StyledMyBoard = styled.div`
             &:hover{
                 color: rgba(245, 221, 221, 1);
             }
-          
+            @media (max-width: 375px){font-size: 1rem; display:flex; flex-direction:column;}
+            @media  (max-width:768px){font-size: 2rem;}
+        } 
         } 
 }
 `;
@@ -99,7 +108,7 @@ function MyBoard(props) {
     console.log(articles)
     return (
 
-        <div className="myboard">
+        <div className="my-board">
 
             <header>
                 <StyledMyBoard>
@@ -108,34 +117,35 @@ function MyBoard(props) {
                         <div>
                             <h1>Pintereach</h1>
                             <h2>Your References Consolidated</h2>
-
                         </div>
                         <nav>
+
                             <Link to="/add-article">Add Article</Link>
                             <a href="/community">Community</a>
                             <Link to="/login">Log Out</Link>
 
-                            <Route path="/my-board" component={MyBoard} />
+                            <Route exact path="/add-article" render={props => <AddArticle {...props} addNewArticle={props.addNewArticle} />} />
                             <Route path="/community" component={Community} />
                             <Route path="/log-in" component={LoginPage} />
+
                         </nav>
                     </div>
                 </StyledMyBoard>
             </header>
             <StyledMain>
-              <main>
-                {articles.map(article => {
-                  return (
-                    <div key={article.author}>
-                      <h1>author:{article.author}</h1>
-                      <p>title:{article.title}</p>
-                      <p>category:{article.category}</p>
-                      <p>url:{article.url}</p>
-                    </div>
-                  )
-                })}
-              </main>
-          </StyledMain>
+                <main>
+                    {articles.map(article => {
+                        return (
+                            <div key={article.author}>
+                                <h1>author:{article.author}</h1>
+                                <p>title:{article.title}</p>
+                                <p>category:{article.category}</p>
+                                <p>url:{article.url}</p>
+                            </div>
+                        )
+                    })}
+                </main>
+            </StyledMain>
             {/* <button>Edit Article </button> */}
         </div>
     );
