@@ -4,7 +4,7 @@ import Community from './Community';
 import LoginPage from './LoginPage';
 import styled from 'styled-components';
 import AddArticle from "./AddArticle";
-import React from 'react';
+
 
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
@@ -120,8 +120,8 @@ const MyBoard = props => {
         // axiosWithAuth()
         //  .get('/articles')
         //.get(`https://bw-backend.herokuapp.com/users/articles`)
-        axios
-            .get(`https://jsonplaceholder.typicode.com/posts/`)
+        axiosWithAuth()
+        .get("https://bw-backend.herokuapp.com/users/articles")
             //.get(`https://pintereach-be.herokuapp.com/${id}articles`)
             .then(response => {
                 console.log("response", response);
@@ -137,7 +137,7 @@ const MyBoard = props => {
 
         setArticle([...article, article])
 
-        console.log(articles)
+        // console.log(articles)
     }
     if (!article) {
         return <div>Loading articles information...</div>;
@@ -162,11 +162,6 @@ const MyBoard = props => {
                             <Link to="/add-article">Add Article</Link>
                             <Link to="/community">Community</Link>
                             <Link to="/login">Log Out</Link>
-                            {/* <AddArticle addNewArticle={addNewArticle} /> */}
-                            <Route exact path="/add-article" render={props => <AddArticle {...props} articles={articles} addNewArticle={addNewArticle} />} />
-                            <Route path="/community" component={Community} />
-                            <Route path="/log-in" component={LoginPage} />
-                            <Route path="/add-article" render={props => <AddArticle {...props} articles={articles} addNewArticle={addNewArticle} />} />
                         </nav>
                     </div>
                 </StyledMyBoard>
@@ -174,7 +169,7 @@ const MyBoard = props => {
             <StyledMain>
                 <main>
                     console.log(articles)
-                    {articles && articles.map(article => {
+                    {article && article.map(article => {
                         return (
                             <div key={article.category_ids} className="article-id">
                                 <h1>Title:{article.title}</h1>
