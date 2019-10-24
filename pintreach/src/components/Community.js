@@ -5,7 +5,7 @@ import friends from "./../data.js";
 import MyBoard from "./MyBoard";
 import axios from "axios";
 import LoginPage from "./LoginPage";
-import axios from 'axios';
+
 
 const Body = styled.div`
   display: flex;
@@ -185,7 +185,7 @@ const Community = props => {
 
   return (
     <Body>
-      <SHeader>
+      {/* <SHeader> */}
         <Logo>Pintreach</Logo>
         <Link to="/my-board">My Board</Link>
         <Link to="/community">Community</Link>
@@ -193,7 +193,7 @@ const Community = props => {
         <Route path="/my-board" component={MyBoard} />
         <Route path="/community" component={Community} />
         <Route path="/log-in" component={LoginPage} />
-      </SHeader>
+      {/* </SHeader> */}
       <div className="body">
         <h1>See What Yours Friends Are Looking Into!</h1>
         <FriendsandArticles>

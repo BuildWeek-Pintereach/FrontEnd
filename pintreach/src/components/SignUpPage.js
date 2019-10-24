@@ -75,6 +75,9 @@ const SignUpPage = props => {
 
   return (
     <StyledPage>
+      <nav>
+        <a href='https://web-ui-2btl8bu6n.now.sh/index.html'>Home</a>
+      </nav>
     <StyledSignUp>
       <form className="sign-up-form" onSubmit={onSubmit}>
         <label htmlFor="first-name">Username (must be 8 or more characters): </label>
