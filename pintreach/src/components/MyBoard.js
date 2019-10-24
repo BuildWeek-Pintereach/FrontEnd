@@ -93,13 +93,13 @@ main{
 
 
 function MyBoard(props) {
-    function routeToBoard(ev, article) {
+    function board(ev, article) {
         ev.preventDefault();
         props.history.push(`/myboard/${article.id}`);
     }
     
     return (
-        <div className="my-board">
+        <div className="myboard">
 
             <header>
                 <StyledMyBoard>
@@ -115,10 +115,6 @@ function MyBoard(props) {
                             <a href="/community">Community</a>
                             <Link to="/login">Log Out</Link>
 
-                            <Route exact path="/add-article" render={props => <AddArticle {...props} addNewArticle={props.addNewArticle} />} />
-                            <Route path="/community" component={Community} />
-                            <Route path="/log-in" component={LoginPage} />
-
                         </nav>
                     </div>
                 </StyledMyBoard>
@@ -127,12 +123,12 @@ function MyBoard(props) {
                 <main>
                     {props.articles.map(article => {
                         return (
-                            <div onClick={ev => routeToBoard(ev, article)}
+                            <div onClick={ev => board(ev, article)}
                                 className='myboard-card' 
                                 key={article.id}>
-                                    <p>{article.title}</p>
-                                    <p>{article.url}</p>
-                                    <p>{article.type}</p>
+                                <p>{article.title}</p>
+                                <p>{article.url}</p>
+                                <p>{article.type}</p>
                             </div>
                         )
                     })}

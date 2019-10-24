@@ -1,12 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const ArticleLink = styled.a`
+  box-sizing: border-box;
+  color: black;
+  width: 90%;
+`;
 
 const CommunityMember = ({ friend }) => {
-    const {name, age, email } = friend;
+    const {firstname, lastname, articles } = friend;
     return (
         <div>
-            <h3>Name: {name}</h3>
-            <h4>Age: {age}</h4>
-            <h5>Email: {email}</h5>
+            <h3>First Name: {firstname}</h3>
+            <h4>Last Name: {lastname}</h4>
+            <ArticleLink>Articles: {articles}</ArticleLink>
         </div>
     )
 };

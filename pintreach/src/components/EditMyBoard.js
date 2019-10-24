@@ -1,26 +1,26 @@
 import React from "react";
-import axios from 'axios';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
-function EditArticle(props) {
-  const article = props.articles.find(
+function EditMyBoard(props) {
+  const editBoard = props.articles.find(
     thing => `${thing.id}` === props.match.params.id
   );
 
-  if (!props.articles.length || !article) {
+  if (!props.articles.length || !editBoard) {
     return <h2>Loading article data...</h2>;
   }
 
   const handleDelete = e => {
     e.preventDefault();
-    // axios
-    //   .delete(`/article/${id}`)
-    //    console.log('delete call is firing')
-    //   .then(res => {
-    //     props.updateArticles(res.data);
-    //     props.history.push("/myboard");
-    //   })
-    //   .catch(err => console.log(err));
+    axiosWithAuth()
+      .delete(`/article/${editBoard.id}`)
+       console.log('delete call is firing')
+      .then(res => {
+        props.updateArticles(res.data);
+        props.history.push("/myboard");
+      })
+      .catch(err => console.log(err));
   };
 
   return (
@@ -46,4 +46,4 @@ function EditArticle(props) {
   );
 }
 
-export default EditArticle;
+export default EditMyBoard;

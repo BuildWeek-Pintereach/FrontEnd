@@ -6,21 +6,27 @@ import AddArticle from './components/AddArticle';
 import Community from './components/Community';
 import { Route, Link } from 'react-router-dom';
 import data from "./data";
+import LoginPage from './components/LoginPage';
+import SignUpPage from './components/SignUpPage';
 
 function App() {
- 
-  
+
 
   return (
 
     <div className="App">
-      <Community />
+      {/* <Community /> */}
+      {/* <MyBoard /> */}
+      {/* <AddArticle /> */}
+      <SignUpPage />
+      {/* <LoginPage /> */}
+      {/* <Community /> */}
       {/* <header className="App-header">
       </header> */}
-      <Link to="/community">Community</Link>
-      <Route path="/add-article" component={AddArticle} />
+      {/* <Link to="/community">Community</Link> */}
+      {/* <Route path="/add-article" component={AddArticle} /> */}
       {/* <Route exact path="/myboard" component={MyBoard} /> */}
-      <Route path='/community' component={Community}/>
+      {/* <Route path='/community' component={Community}/> */}
     </div>
   );
 }

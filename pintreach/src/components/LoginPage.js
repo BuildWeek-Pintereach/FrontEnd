@@ -62,7 +62,7 @@ const LoginPage = props => {
     <StyledLogin>
       <form className="login-page" onSubmit={onSubmit}>
         <label htmlFor="email">Email Address: </label>
-          <input type="text" name='password' placeholder="example@email.com..." email={login.email} onChange={handleChanges} required />
+          <input type="text" name='email' placeholder="example@email.com..." email={login.email} onChange={handleChanges} required />
           <label htmlFor="email">Password: </label>
           <input type="text" name='password' placeholder="Password..." password={login.password} onChange={handleChanges} required />
 
