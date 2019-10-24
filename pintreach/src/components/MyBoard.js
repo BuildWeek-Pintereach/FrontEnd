@@ -4,7 +4,8 @@ import Community from './Community';
 import LoginPage from './LoginPage';
 import styled from 'styled-components';
 import AddArticle from "./AddArticle";
-import axios from 'axios';
+
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const StyledMyBoard = styled.div`
 .outer{
@@ -21,8 +22,8 @@ const StyledMyBoard = styled.div`
     border-bottom: 3px solid rgba(107, 78, 113, 1);
     top: 0%;
     max-height: 19vh;
-    @media  (max-width: 375px){font-size: 2rem; display:flex; flex-direction: column;}
-    @media (max-width: 768px){font-size: 2rem;}
+    @media(max-width: 500px){font-size: 0.5rem; display:flex; flex-direction: column;}
+    @media(max-width: 820px){font-size: 1rem;}
     };
     
     
@@ -33,14 +34,17 @@ const StyledMyBoard = styled.div`
         h1{
             color:rgba(245, 221, 221, 1);
             font-size: 3rem;
-            @media  (max-width: 375px){font-size: 1rem; display: flex; flex-direction:column;}
-            @media (max-width: 768px){font-size: 2rem;}
+            margin-bottom:5px;
+            @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction:column;}
+            @media(max-width: 820px){font-size: 1rem;}
         }
         h2{
             color:rgba(245, 221, 221, 1);
-            font-size: 2rem;
-            @media (max-width: 500px){font-size: 2rem; display: flex; flex-direction: column;}
-            @media  (max-width:825px){font-size: 3rem;}
+            margin-bottom:60px;
+            line-height:1;
+            font-size: 1.6rem;
+            @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction: column;}
+            @media(max-width:820px){font-size: 1rem;}
         }
         
     
@@ -64,8 +68,8 @@ const StyledMyBoard = styled.div`
             &:hover{
                 color: rgba(245, 221, 221, 1);
             }
-            @media (max-width: 500px){font-size: 1rem; display:flex; flex-direction:column;}
-            @media  (max-width:825px){font-size: 2rem;}
+            @media(max-width: 500px){font-size: 0.5rem; display:flex; flex-direction:column;}
+            @media(max-width:825px){font-size: 1rem;}
         } 
         } 
 }
@@ -84,12 +88,18 @@ main{
         h1{
          
            color: rgba(245, 221, 221, 1);
+           font-size:1rem;
         
         }
+        @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction:column;}
+            @media(max-width: 820px){font-size: 1rem;}
+
         p{
             color: rgba(245, 221, 221, 1);  
         }
-        
+        @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction:column;}
+            @media(max-width: 820px){font-size: 1rem;}
+
     }
     
 }
@@ -97,40 +107,46 @@ main{
 
 
 const MyBoard = props => {
+    console.log(props);
 
-    const [article, setArticle] = useState(null);
+    const [article, setArticle] = useState({});
     //     id: '1', title: 'My Research Paper', type: 'Business', url: 'https://abc.com'
     // }, { id: '2', title: 'The HealthInsider', type: 'Health', url: 'https://abc.com' },
     // { id: '3', title: 'The Psychologist and ME', type: 'Health', url: 'https://abc.com' }
     // ])
     useEffect(() => {
         const id = props.match.params.id;
+        // axiosWithAuth()
+        //  .get('/articles')
+        //.get(`https://bw-backend.herokuapp.com/users/articles`)
         axios
             .get(`https://jsonplaceholder.typicode.com/posts/`)
             //.get(`https://pintereach-be.herokuapp.com/${id}articles`)
             .then(response => {
-                //  console.log("response", response);
+                console.log("response", response);
                 setArticle(response.data)
-            })
+
+            }, [])
             .catch(error => {
                 console.error("Server Error", error);
-            });
-    }, [])
+
+            }, [])
+    })
     const addNewArticle = article => {
 
         setArticle([...article, article])
 
-        console.log(article)
+        console.log(articles)
     }
     if (!article) {
-        return <div>Loading article information...</div>;
+        return <div>Loading articles information...</div>;
 
     }
     // console.log(articles)
-    const { title, body } = article;
+    //const { category_ids, title, link } = props.articles;
     return (
 
-        <div className="my-board">
+        <div className="my-board" >
 
             <header>
                 <StyledMyBoard>
@@ -146,34 +162,33 @@ const MyBoard = props => {
                             <Link to="/community">Community</Link>
                             <Link to="/login">Log Out</Link>
                             {/* <AddArticle addNewArticle={addNewArticle} /> */}
-                            <Route exact path="/add-article" render={props => <AddArticle {...props} article={article} addNewArticle={addNewArticle} />} />
+                            <Route exact path="/add-article" render={props => <AddArticle {...props} articles={articles} addNewArticle={addNewArticle} />} />
                             <Route path="/community" component={Community} />
                             <Route path="/log-in" component={LoginPage} />
-                            <Route path="/add-article" render={props => <AddArticle {...props} article={article} addNewArticle={addNewArticle} />} />
+                            <Route path="/add-article" render={props => <AddArticle {...props} articles={articles} addNewArticle={addNewArticle} />} />
                         </nav>
                     </div>
                 </StyledMyBoard>
             </header>
             <StyledMain>
                 <main>
-                    {article && article.map(article => {
+                    console.log(articles)
+                    {articles && articles.map(article => {
                         return (
-                            <div key={article.id} className="article-id">
+                            <div key={article.category_ids} className="article-id">
                                 <h1>Title:{article.title}</h1>
-
-                                <p className="article-desc">
-                                    Desc: <strong>{article.body}</strong>
+                                {/* <MyBoardList users={yBoardList} /> */}
+                                <p className="article-link">
+                                    Desc: <strong>{article.link}</strong>
                                 </p>
-                                {/* <p>{article.type}</p> */}
-                                {/* <p>url:{article.url}</p> */}
                             </div>
                         )
                     })}
                 </main>
-                <button onClick={addNewArticle} className="add-button">Add Article </button>
+                {/* <button onClick={addNewArticle} className="add-button">Add Article </button> */}
             </StyledMain>
 
-        </div>
+        </div >
     );
 
 

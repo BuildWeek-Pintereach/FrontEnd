@@ -29,14 +29,19 @@ const StyledAddArticle = styled.div`
         text-align: center;
         h1{
             color:rgba(245, 221, 221, 1);
+            line-height:0.5;
             font-size: 3rem;
-            margin-top:25vh;
+   
         }
         h2{
             color:rgba(245, 221, 221, 1);
-            font-size: 2rem;
+            line-height:0.5;
+            font-size: 1.8rem;
+            margin-bottom:5vh;
         }
-        
+        @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction:column;}
+            @media(max-width: 820px){font-size: 1rem;}
+
     }
    
     nav{
@@ -57,20 +62,25 @@ const StyledAddArticle = styled.div`
             &:hover{
                 color: rgba(245, 221, 221, 1);
             }
-          
+            @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction:column;}
+            @media(max-width: 820px){font-size: 1rem;}
+
         } 
 }
 `;
 const StyledMain = styled.div`
 main{
-    margin-top: 25vh;
+    margin-top: 30vh;
     display:flex;
     justify-content: space-evenly;
     flex-wrap:wrap;
     background-color:rgba(58, 68, 84, 1);
     width:90%;
     height:50vh;
-    margin-left:80px;
+    margin-left:60px;
+    @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction:column;}
+    @media(max-width: 820px){font-size: 1rem;}
+
     div{
         margin-top: 10vh;
         padding:2%;
@@ -117,6 +127,9 @@ main{
         font-size: 1.0rem;
         margin:20px;
       }
+      @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction:column;}
+            @media(max-width: 820px){font-size: 1rem;}
+
 }
 `;
 
@@ -158,12 +171,12 @@ const AddArticle = ({ props, addArticle, initialCard }) => {
     const handleSubmit = event => {
         event.preventDefault();
         props.addArticle(article);
-        // setArticle({
+        setArticle({
 
-        //     id: Date.now(),
-        //     body: "",
-        //     title: "",
-        // });
+            id: Date.now(),
+            body: "",
+            title: "",
+        });
     };
     //axios
     //.post(`https://jsonplaceholder.typ`)
@@ -185,6 +198,7 @@ const AddArticle = ({ props, addArticle, initialCard }) => {
                 <StyledAddArticle>
                     <div className="outer">
                         <div>
+                            <h1>Pintereach</h1>
                             <h1>Add an Article</h1>
                         </div>
                         <nav>
@@ -208,7 +222,8 @@ const AddArticle = ({ props, addArticle, initialCard }) => {
 
                             <label htmlFor="desc">Desc:</label>
                             <input id="Date.now()" type="text" placeholder="Desc" name="body" onChange={handleChange} value={article.body} />
-                            <button type="submit">Add Article</button>
+                            <button onClick={addArticle} className="add-button">Add Article </button>
+
                             {/* <label>Type:<br></br>
                                 <select value={props.value} name="category" onChange={changeHandler} className="select">
                                     <option>Please Choose Category</option>
