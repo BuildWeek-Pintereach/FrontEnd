@@ -175,9 +175,16 @@ const Community = props => {
   const [user, setUser] = useState();
   const [articles, setArticles] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState();
+  const [searchResults, setSearchResults] = useState([]);
 
   /////////////////Grab Users
+
+  useEffect(() => {
+    const results = articles.filter(article =>
+      article.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setSearchResults(results);
+  }, [searchTerm]);
 
   useEffect(() => {
     axios
@@ -192,13 +199,6 @@ const Community = props => {
   }, []);
 
   ////////////////////Search Form
-
-  useEffect(() => {
-    const results = articles.filter(article =>
-      article.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setSearchResults(results);
-  }, [searchTerm]);
 
   const handleChange = event => {
     setSearchTerm(event.target.value);
