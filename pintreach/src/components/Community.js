@@ -4,7 +4,7 @@ import styled from "styled-components";
 import friends from "./../data.js";
 import MyBoard from "./MyBoard";
 import LoginPage from "./LoginPage";
-import axios from 'axios';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const Body = styled.div`
   display: flex;
@@ -66,90 +66,91 @@ const FriendsandArticles = styled.div`
 export const Community = () => {
   const [userID, setUserID] = useState();
   const [user, setUser] = useState();
+  console.log(userID);
 
     useEffect(() => {
-  //     axios
-  //       .get(`https://pintereach-be.herokuapp.com/${id}/articles`)
-  //       .then(response => {
-  //         console.log("response", response);
-  //       })
-  //       .catch(error => {
-  //         console.error("Server Error", error);
-  //       });
-    }, []);
+        axiosWithAuth()
+            .get('/users')
+            .then(res => {
+            console.log('the response is...', res);
+            setUser(res.data)
+            })
+        .catch(err => {
+            console.log('An error', err);
+        });
+    },[])
+    
 
-  return (
-    <Body>
-      <SHeader>
-        <Logo>Pintreach</Logo>
-        <Link to="/my-board">My Board</Link>
-        <Link to="/community">Community</Link>
-        <Link to="/log-in">Log Out</Link>
-        <Route path="/my-board" component={MyBoard} />
-        <Route path="/community" component={Community} />
-        <Route path="/log-in" component={LoginPage} />
-      </SHeader>
-      <div className="body">
-        <h1>See What Yours Friends Are Looking Into!</h1>
-        <FriendsandArticles>
-          <Friends>
-            {friends.map((f, index) => {
-              return (
-                <FriendLink key={index}>
-                  <h3
-                    onClick={e => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setUserID(f.id);
-                      setUser(f);
-                    }}
-                  >
-                    {f.name}
-                  </h3>
-                </FriendLink>
-              );
-            })}
-          </Friends>
-          <Articles>
-            <ArticleCat>Biology</ArticleCat>
+    return (
+        <Body>
+          <SHeader>
+            <Logo>Pintreach</Logo>
+            <a href='#'>Home</a>
+            <Link to="/myboard">My Board</Link>
+            <Link to="/login">Log Out</Link>
 
-            {user &&
-              user.articles.Biology.map(item => {
-                return <Link>{item}</Link>;
-              })}
-
-            <ArticleCat>Psychology</ArticleCat>
-
-            {user &&
-              user.articles.Psychology.map(item => {
-                return <Link>{item}</Link>;
-              })}
-
-            <ArticleCat>Technology</ArticleCat>
-
-            {user &&
-              user.articles.Technology.map(item => {
-                return <Link>{item}</Link>;
-              })}
-
-            <ArticleCat>Physics</ArticleCat>
-
-            {user &&
-              user.articles.Physics.map(item => {
-                return <Link>{item}</Link>;
-              })}
-
-            <ArticleCat>Health</ArticleCat>
-
-            {user &&
-              user.articles.Health.map(item => {
-                return <Link>{item}</Link>;
-              })}
-          </Articles>
-        </FriendsandArticles>
-      </div>
-    </Body>
-  );
-};
-
-export default Community;
+          </SHeader>
+          <div className="body">
+            <h1>See What Yours Friends Are Looking Into!</h1>
+            <FriendsandArticles>
+              <Friends>
+                {friends.map((f, index) => {
+                  return (
+                    <FriendLink key={index}>
+                      <h3
+                        onClick={e => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setUserID(f.id);
+                          setUser(f);
+                        }}
+                      >
+                        {f.firstname}
+                      </h3>
+                    </FriendLink>
+                  );
+                })}
+              </Friends>
+              <Articles>
+                <ArticleCat>Biology</ArticleCat>
+    
+                {user &&
+                  user.articles.Biology.map(item => {
+                    return <Link>{item}</Link>;
+                  })}
+    
+                <ArticleCat>Psychology</ArticleCat>
+    
+                {user &&
+                  user.articles.Psychology.map(item => {
+                    return <Link>{item}</Link>;
+                  })}
+    
+                <ArticleCat>Technology</ArticleCat>
+    
+                {user &&
+                  user.articles.Technology.map(item => {
+                    return <Link>{item}</Link>;
+                  })}
+    
+                <ArticleCat>Physics</ArticleCat>
+    
+                {user &&
+                  user.articles.Physics.map(item => {
+                    return <Link>{item}</Link>;
+                  })}
+    
+                <ArticleCat>Health</ArticleCat>
+    
+                {user &&
+                  user.articles.Health.map(item => {
+                    return <Link>{item}</Link>;
+                  })}
+              </Articles>
+            </FriendsandArticles>
+          </div>
+        </Body>
+      );
+    };
+    
+    export default Community;

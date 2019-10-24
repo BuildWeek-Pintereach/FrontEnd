@@ -3,35 +3,51 @@ import styled from "styled-components";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
-const StyledLogin = styled.div` 
+const StyledPage = styled.div`
+  background-color:lightsteelblue;
+  height: 500px;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`
+const StyledLogin = styled.div`
+.login-form
+  font-color: #fff;
+  padding: 100px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
 
-.login-page
-    font-color: #fff;
-    padding: 100px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    }
-
-    input {
-        margin-left:10px;
-        margin-bottom:10px;
-    }
+input {
+  margin-left:10px;
+  margin-bottom:10px;
+}
     
-    button {
-        padding:10px;
-        border-radius:10px
-        background-color:darkgray;
-    }
+button {
+  padding:10px;
+  border-radius:10px
+  background-color:darkblue;
+  color:white;
+  font-size:1.5rem;
+  padding-left:25px;
+  padding-right:25px;
+}
 
 `;
 const LoginPage = props => {
   console.log(props);
   const [login, setLogin] = useState({
-    email: '',
+    username: '',
     password: ''
   });
 
@@ -46,12 +62,12 @@ const LoginPage = props => {
 
   const onSubmit = e => {
     e.preventDefault();
-    axiosWithAuth()
-    .post('/login', login)
+    return axiosWithAuth()
+    .post('/auth/login', login)
     // console.log('login is firing')
     .then(res => {
         localStorage.setItem('token', res.data.payload);
-        props.history.push('/protected');
+        props.history.push('/myboard');
     })
         .catch(err => console.log('login error', err.response));
   }
@@ -59,14 +75,13 @@ const LoginPage = props => {
 
 
   return (
+    <StyledPage>
     <StyledLogin>
-      <form className="login-page" onSubmit={onSubmit}>
-        <label htmlFor="email">Email Address: </label>
-          <input type="text" name='password' placeholder="example@email.com..." email={login.email} onChange={handleChanges} required />
-          <label htmlFor="email">Password: </label>
-          <input type="text" name='password' placeholder="Password..." password={login.password} onChange={handleChanges} required />
-
-
+      <form className="login-form" onSubmit={onSubmit}>
+        <label htmlFor="username">Enter Username (must match your registered username): </label>
+        <input type="text" name='username' placeholder="JohnDoe123..." username={login.username} onChange={handleChanges} required /><br />
+        <label htmlFor="email">Password (must match your registered password): </label>
+        <input type="text" name='password' placeholder="12345678..." password={login.password} onChange={handleChanges} required /><br />
         <button type="submit">Login</button>
         <p>
           Need to sign up? <br />
@@ -74,6 +89,7 @@ const LoginPage = props => {
         </p>
       </form>
     </StyledLogin>
+    </StyledPage>
   );
 };
 

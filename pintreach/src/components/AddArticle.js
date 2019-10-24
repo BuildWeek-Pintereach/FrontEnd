@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
-import { Link, Route } from 'react-router-dom';
-import Community from './Community';
-import LoginPage from './LoginPage';
-import MyBoard from './MyBoard';
+import { Link } from 'react-router-dom';
+
 
 const StyledAddArticle = styled.div`
 .outer{
@@ -125,10 +123,9 @@ main{
 const AddArticle = props => {
     const { addNewArticle, initialCard } = props;
     const [article, setArticle] = useState(initialCard || {
-        author: "",
         title: "",
-        url: "",
-        type:''
+        link: "",
+        category_ids:''
     });
 
 
@@ -140,19 +137,18 @@ const AddArticle = props => {
     const submitForm = e => {
         e.preventDefault();
         axiosWithAuth()
-        .post(`/ck21z8u7t00001xdulbmu8dfs/article`, article)
+        .post(`/users/articles`, article)
         // console.log('is posting')
-        // .then(res => {
-        //     props.history.push('myboard', res.data)
-        // })
-        // .catch(err => console.log("it did not work", err.response));
+        .then(res => {
+            props.history.push('/myboard', res.data)
+        })
+        .catch(err => console.log("it did not work", err.response));
         console.log('submit is working');
         //addNewArticle(article);
-        setArticle({ author: "", title: "", category: "", url: "" });
+        setArticle({ title: "", category: "", url: "" });
     };
 
     return (
-
         <div className="add-article">
             <header>
                 <StyledAddArticle>
@@ -161,13 +157,11 @@ const AddArticle = props => {
                             <h1>Add an Article</h1>
                         </div>
                         <nav>
+                            <a href='#'>Home</a>
                             <Link to="/myboard">MyBoard</Link>
                             <Link to="/community">Community</Link>
                             <Link to="/login">Log Out</Link>
 
-                            <Route path="/my-board" component={MyBoard} />
-                            <Route path="/community" component={Community} />
-                            <Route path="/log-in" component={LoginPage} />
                         </nav>
                     </div>
                 </StyledAddArticle>
@@ -176,9 +170,6 @@ const AddArticle = props => {
                 <main>
                     <div>
                         <form onSubmit={submitForm}>
-                            <label htmlFor="author">Author:</label>
-                            <input id="Date.now()" type="text" placeholder="Author" name="author" onChange={changeHandler} value={props.author} />
-
                             <label htmlFor="title">Title:</label>
                             <input id="Date.now()" type="text" placeholder="Title" name="title" onChange={changeHandler} value={props.title} />
                             <label>Category:<br></br>
