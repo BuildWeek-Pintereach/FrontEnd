@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
-=======
-// import React, { useState } from "react";
->>>>>>> 56eb4e4a5177876f11133c68222c64315556c488
 import { Link, Route } from 'react-router-dom';
 import Community from './Community';
 import LoginPage from './LoginPage';
@@ -111,7 +107,6 @@ main{
 `;
 
 
-<<<<<<< HEAD
 const MyBoard = props => {
     console.log(props);
 
@@ -153,16 +148,6 @@ const MyBoard = props => {
     return (
 
         <div className="my-board" >
-=======
-function MyBoard(props) {
-    function routeToBoard(ev, article) {
-        ev.preventDefault();
-        props.history.push(`/myboard/${article.id}`);
-    }
-    
-    return (
-        <div className="my-board">
->>>>>>> 56eb4e4a5177876f11133c68222c64315556c488
 
             <header>
                 <StyledMyBoard>
@@ -177,22 +162,17 @@ function MyBoard(props) {
                             <Link to="/add-article">Add Article</Link>
                             <Link to="/community">Community</Link>
                             <Link to="/login">Log Out</Link>
-<<<<<<< HEAD
                             {/* <AddArticle addNewArticle={addNewArticle} /> */}
                             <Route exact path="/add-article" render={props => <AddArticle {...props} articles={articles} addNewArticle={addNewArticle} />} />
                             <Route path="/community" component={Community} />
                             <Route path="/log-in" component={LoginPage} />
                             <Route path="/add-article" render={props => <AddArticle {...props} articles={articles} addNewArticle={addNewArticle} />} />
-=======
-
->>>>>>> 56eb4e4a5177876f11133c68222c64315556c488
                         </nav>
                     </div>
                 </StyledMyBoard>
             </header>
             <StyledMain>
                 <main>
-<<<<<<< HEAD
                     console.log(articles)
                     {articles && articles.map(article => {
                         return (
@@ -202,29 +182,14 @@ function MyBoard(props) {
                                 <p className="article-link">
                                     Desc: <strong>{article.link}</strong>
                                 </p>
-=======
-                    {props.articles.map(article => {
-                        return (
-                            <div onClick={ev => routeToBoard(ev, article)}
-                                className='myboard-card' 
-                                key={article.id}>
-                                    <p>{article.title}</p>
-                                    <p>{article.url}</p>
-                                    <p>{article.type}</p>
->>>>>>> 56eb4e4a5177876f11133c68222c64315556c488
                             </div>
                         )
                     })}
                 </main>
                 {/* <button onClick={addNewArticle} className="add-button">Add Article </button> */}
             </StyledMain>
-<<<<<<< HEAD
 
         </div >
-=======
-           
-        </div>
->>>>>>> 56eb4e4a5177876f11133c68222c64315556c488
     );
 
 

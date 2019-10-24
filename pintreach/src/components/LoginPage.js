@@ -85,7 +85,7 @@ const LoginPage = props => {
         <button type="submit">Login</button>
         <p>
           Need to sign up? <br />
-          <a href='/signup'>Sign Up Now!</a>
+          <a href='/'>Sign Up Now!</a>
         </p>
       </form>
     </StyledLogin>
