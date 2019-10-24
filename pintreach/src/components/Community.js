@@ -5,6 +5,7 @@ import friends from "./../data.js";
 import MyBoard from "./MyBoard";
 import axios from "axios";
 import LoginPage from "./LoginPage";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 import SearchForm from "./CommunitySearch.js";
 // import { CommunityList } from "./CommunityList.js";
 
@@ -172,26 +173,36 @@ const StyledMyBoard = styled.div`
 const Community = props => {
   const [userID, setUserID] = useState();
   const [user, setUser] = useState();
+  const [articles, setArticles] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState(friends);
+  const [searchResults, setSearchResults] = useState();
 
   /////////////////Grab Users
+
   useEffect(() => {
-    axios.get(`https://bw-backend.herokuapp.com/users`).then(response => {
-      console.log("This is users", response);
-    });
+    axios
+      .get(`https://bw-backend.herokuapp.com/articles/`)
+      .then(response => {
+        console.log("This is users", response);
+        setArticles(response.data);
+      })
+      .catch(error => {
+        console.log("error", error);
+      });
   }, []);
 
   ////////////////////Search Form
-  const handleChange = event => {
-    setSearchTerm(event.target.value);
-  };
+
   useEffect(() => {
-    const results = friends.filter(person =>
-      person.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const results = articles.filter(article =>
+      article.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(results);
   }, [searchTerm]);
+
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+  };
 
   return (
     <Body>
@@ -217,7 +228,7 @@ const Community = props => {
       <div className="body">
         <h1>See What Yours Friends Are Looking Into!</h1>
         <FriendsandArticles>
-          <Friends>
+          <Articles>
             <Search>
               <input
                 type="text"
@@ -226,56 +237,49 @@ const Community = props => {
                 onChange={handleChange}
               />
             </Search>
-
-            {searchResults.map(item => (
-              <FriendLink
-                onClick={f => {
-                  f.preventDefault();
-                  f.stopPropagation();
-                  setUserID(f.id);
-                  setUser(f);
-                }}
-              >
-                {item.name}
-              </FriendLink>
-            ))}
-          </Friends>
-          <Articles>
-            <ArticleCat>Biology</ArticleCat>
-            <LinkDiv>
-              {/* {user &&
+            <ArticleCat>Community Articles</ArticleCat>
+            {searchResults.map(item => {
+              return (
+                <div>
+                  <h3>{item.title}</h3>
+                  <a href={item.link}>{item.link}</a>
+                </div>
+              );
+            })}
+            {/* <LinkDiv>
+            {user &&
                 user.articles.Biology.map(item => {
                   return <a>{item}</a>;
-                })} */}
-            </LinkDiv>
-            <ArticleCat>Psychology</ArticleCat>
+                })}
+          </LinkDiv>
+       <ArticleCat>Psychology</ArticleCat>
             <LinkDiv>
-              {/* {user &&
+              {user &&
                 user.articles.Psychology.map(item => {
                   return <a>{item}</a>;
-                })} */}
+                })}
             </LinkDiv>
             <ArticleCat>Technology</ArticleCat>
             <LinkDiv>
-              {/* {user &&
+              {user &&
                 user.articles.Technology.map(item => {
                   return <a>{item}</a>;
-                })} */}
+                })}
             </LinkDiv>
             <ArticleCat>Physics</ArticleCat>
             <LinkDiv>
-              {/* {user &&
+              {user &&
                 user.articles.Physics.map(item => {
                   return <a>{item}</a>;
-                })} */}
+                })}
             </LinkDiv>
             <ArticleCat>Health</ArticleCat>
             <LinkDiv>
-              {/* {user &&
+              {user &&
                 user.articles.Health.map(item => {
                   return <a>{item}</a>;
-                })} */}
-            </LinkDiv>
+                })}
+            </LinkDiv> */}
           </Articles>
         </FriendsandArticles>
       </div>

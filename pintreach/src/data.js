@@ -2,7 +2,7 @@
 
 const friends = [
   {
-    id: 1,
+    user_id: 1,
     firstname: "Ben",
     email: "ben@lambdaschool.com",
     articles: {
@@ -14,7 +14,7 @@ const friends = [
     }
   },
   {
-    id: 2,
+    user_id: 2,
     firstname: "Amanda",
     email: "amanda@lambdaschool.com",
     articles: {
@@ -26,7 +26,7 @@ const friends = [
     }
   },
   {
-    id: 3,
+    user_id: 3,
     firstname: "Ryan",
     email: "ryan@lambdaschool.com",
     articles: {
@@ -38,7 +38,7 @@ const friends = [
     }
   },
   {
-    id: 4,
+    user_id: 5,
     firstname: "Sara",
     email: "sara@lambdaschool.com",
     articles: {
@@ -52,4 +52,3 @@ const friends = [
 ];
 
 export default friends;
-
