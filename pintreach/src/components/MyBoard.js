@@ -1,10 +1,10 @@
-// import React, { useState,useEffect } from "react";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import { Link, Route } from 'react-router-dom';
 import Community from './Community';
 import LoginPage from './LoginPage';
 import styled from 'styled-components';
 import AddArticle from "./AddArticle";
+import axios from 'axios';
 
 const StyledMyBoard = styled.div`
 .outer{
@@ -29,6 +29,7 @@ const StyledMyBoard = styled.div`
     div{
         width:49%;
         text-align: center;
+       
         h1{
             color:rgba(245, 221, 221, 1);
             font-size: 3rem;
@@ -79,6 +80,7 @@ main{
         padding:2%;
         width:28%;
         background-color: rgba(58, 68, 84, 1);
+        margin:10px;
         h1{
          
            color: rgba(245, 221, 221, 1);
@@ -87,35 +89,45 @@ main{
         p{
             color: rgba(245, 221, 221, 1);  
         }
+        
     }
+    
 }
 `;
 
 
-function MyBoard(props) {
+const MyBoard = props => {
 
-    const [articles, setArticles] = useState([{
-        type: 'Biology', title: 'My Research Paper', category: 'Business', url: 'https://abc.com'
-    }, { type: 'Health', title: 'The HealthInsider', category: 'Health', url: 'https://abc.com' },
-    { type: 'url', title: 'The Psychologist and ME', category: 'Health', url: 'https://abc.com' }
-    ])
-    //axios
-    //.get(`https://pintereach-be.herokuapp.com/${id}articles`)
-    //.then(response =>{
-    // console.log("response", response); 
+    const [article, setArticle] = useState(null);
+    //     id: '1', title: 'My Research Paper', type: 'Business', url: 'https://abc.com'
+    // }, { id: '2', title: 'The HealthInsider', type: 'Health', url: 'https://abc.com' },
+    // { id: '3', title: 'The Psychologist and ME', type: 'Health', url: 'https://abc.com' }
+    // ])
+    useEffect(() => {
+        const id = props.match.params.id;
+        axios
+            .get(`https://jsonplaceholder.typicode.com/posts/`)
+            //.get(`https://pintereach-be.herokuapp.com/${id}articles`)
+            .then(response => {
+                console.log("response", response);
+                setArticle(response.data)
+            })
+            .catch(error => {
+                console.error("Server Error", error);
+            });
+    }, [])
+    const saveArticle = () => {
+        const addNewArticle = props.addNewArticle;
+        addNewArticle(article)
 
-    //})
-    //.catch(error =>{
-    // console.error("Server Error",error);
-    //}
-    //}[]);
-    const addNewArticle = article => {
-        setArticles([...articles, article])
         console.log(article)
+    }
+    if (!article) {
+        return <div>Loading article information...</div>;
 
     }
-
-    console.log(articles)
+    // console.log(articles)
+    const { title, body } = article;
     return (
 
         <div className="my-board">
@@ -131,7 +143,7 @@ function MyBoard(props) {
                         <nav>
 
                             <Link to="/add-article">Add Article</Link>
-                            <a href="/community">Community</a>
+                            <Link to="/community">Community</Link>
                             <Link to="/login">Log Out</Link>
 
                             <Route exact path="/add-article" render={props => <AddArticle {...props} addNewArticle={props.addNewArticle} />} />
@@ -143,19 +155,23 @@ function MyBoard(props) {
             </header>
             <StyledMain>
                 <main>
-                    {articles.map(article => {
+                    {article && article.map(article => {
                         return (
-                            <div key={article.author}>
-                                <h1>author:{article.author}</h1>
-                                <p>title:{article.title}</p>
-                                <p>category:{article.category}</p>
-                                <p>url:{article.url}</p>
+                            <div key={article.id} className="article-id">
+                                <h1>Title:{article.title}</h1>
+
+                                <p>className="article-desc">
+                                    Desc: <strong>{article.body}</strong>
+                                </p>
+                                {/* <p>{article.type}</p> */}
+                                {/* <p>url:{article.url}</p> */}
                             </div>
                         )
                     })}
                 </main>
+                <button onClick={saveArticle} className="add-button">Add Article </button>
             </StyledMain>
-            {/* <button>Edit Article </button> */}
+
         </div>
     );
 
