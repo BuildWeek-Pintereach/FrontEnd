@@ -5,9 +5,10 @@ import axios from 'axios';
 export const axiosWithAuth = () => {
   const token = localStorage.getItem('token');
   return axios.create({
-    baseURL: 'https://pintereach-be.herokuapp.com',
+    baseURL: 'https://bw-backend.herokuapp.com',
     headers: {
-      Authorization: token
+      Authorization: token,
+      "Content-Type": "application/json"
     }
   });
 };
