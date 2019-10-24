@@ -46,7 +46,7 @@ import MyBoard from "./components/MyBoard";
 import LoginPage from "./components/LoginPage";
 import data from "./data";
 import Community from "./components/Community";
-import EditMyBoard from "./components/EditMyBoard";
+
 import AddArticle from "./components/AddArticle";
 
 function App() {
@@ -57,11 +57,11 @@ function App() {
           <Route exact path="/" component={SignUpPage} />
           <Route path="/login" component={LoginPage} />
           <PrivateRoute path="/myboard" component={MyBoard} /> 
-          <Route exact path="/edit-article" component={EditMyBoard} />
+          {/* <Route exact path="/edit-article" component={EditMyBoard} /> */}
           <Route path="/add-article" component={AddArticle} />   
           <Route exact path="/community" component={Community} />
        </Switch>
-      </Router> */}
+      </Router>
     </div>
 
   );
