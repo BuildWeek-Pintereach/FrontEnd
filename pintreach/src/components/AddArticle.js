@@ -125,10 +125,11 @@ main{
 const AddArticle = props => {
     const { addNewArticle, initialCard } = props;
     const [article, setArticle] = useState(initialCard || {
-        author: "",
+        userId: "",
+        id: "",
+        body: "",
         title: "",
-        category: "",
-        url: "",
+
 
     });
 
@@ -141,15 +142,20 @@ const AddArticle = props => {
     const submitForm = event => {
         event.preventDefault();
         // axios
-        // .post(`https://pintereach-be.herokuapp.com/article/${article.id}`)
+        // .post(`https://jsonplaceholder.typicode.com/posts}`)
         // console.log('is posting')
         // .then(res => {
         //     props.history.push('myboard', res.data)
         // })
         // .catch(err => console.log("it did not work", err.response));
         console.log('submit is working');
-        //addNewArticle(article);
-        setArticle({ author: "", title: "", category: "", url: "" });
+        props.addNewArticle(article);
+        setArticle({
+            userId: "",
+            id: "",
+            body: "",
+            title: "",
+        });
     };
 
     return (

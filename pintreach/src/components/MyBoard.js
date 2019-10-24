@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// import React, { useState,useEffect } from "react";
+import React, { useState } from 'react';
 import { Link, Route } from 'react-router-dom';
 import Community from './Community';
 import LoginPage from './LoginPage';
@@ -37,8 +38,8 @@ const StyledMyBoard = styled.div`
         h2{
             color:rgba(245, 221, 221, 1);
             font-size: 2rem;
-            @media (max-width: 375px){font-size: 2rem; display: flex; flex-direction: column;}
-            @media  (max-width:768px){font-size: 3rem;}
+            @media (max-width: 500px){font-size: 2rem; display: flex; flex-direction: column;}
+            @media  (max-width:825px){font-size: 3rem;}
         }
         
     
@@ -62,8 +63,8 @@ const StyledMyBoard = styled.div`
             &:hover{
                 color: rgba(245, 221, 221, 1);
             }
-            @media (max-width: 375px){font-size: 1rem; display:flex; flex-direction:column;}
-            @media  (max-width:768px){font-size: 2rem;}
+            @media (max-width: 500px){font-size: 1rem; display:flex; flex-direction:column;}
+            @media  (max-width:825px){font-size: 2rem;}
         } 
         } 
 }
@@ -94,11 +95,20 @@ main{
 function MyBoard(props) {
 
     const [articles, setArticles] = useState([{
-        author: 'James Stevens', title: 'My Research Paper', category: 'Business', url: 'https://abc.com'
-    }, { author: 'Jessica Parker', title: 'The HealthInsider', category: 'Health', url: 'https://abc.com' },
-    { author: 'Sammy Williams', title: 'The Psychologist and ME', category: 'Health', url: 'https://abc.com' }
+        type: 'Biology', title: 'My Research Paper', category: 'Business', url: 'https://abc.com'
+    }, { type: 'Health', title: 'The HealthInsider', category: 'Health', url: 'https://abc.com' },
+    { type: 'url', title: 'The Psychologist and ME', category: 'Health', url: 'https://abc.com' }
     ])
+    //axios
+    //.get(`https://pintereach-be.herokuapp.com/${id}articles`)
+    //.then(response =>{
+    // console.log("response", response); 
 
+    //})
+    //.catch(error =>{
+    // console.error("Server Error",error);
+    //}
+    //}[]);
     const addNewArticle = article => {
         setArticles([...articles, article])
         console.log(article)
@@ -127,7 +137,7 @@ function MyBoard(props) {
                             <Route exact path="/add-article" render={props => <AddArticle {...props} addNewArticle={props.addNewArticle} />} />
                             <Route path="/community" component={Community} />
                             <Route path="/log-in" component={LoginPage} />
-
+                            {/* <AddArticle addNewArticle={addNewArticle} /> */}
                         </nav>
                     </div>
                 </StyledMyBoard>
