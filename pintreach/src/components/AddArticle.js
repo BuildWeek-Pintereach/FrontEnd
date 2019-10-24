@@ -137,7 +137,7 @@ const AddArticle = props => {
     const submitForm = e => {
         e.preventDefault();
         axiosWithAuth()
-        .post(`/${article.id}/article`, article)
+        .post(`/users/articles`, article)
         // console.log('is posting')
         .then(res => {
             props.history.push('/myboard', res.data)

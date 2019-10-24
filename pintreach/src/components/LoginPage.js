@@ -31,7 +31,7 @@ const StyledLogin = styled.div`
 const LoginPage = props => {
   console.log(props);
   const [login, setLogin] = useState({
-    email: '',
+    username: '',
     password: ''
   });
 
@@ -46,12 +46,12 @@ const LoginPage = props => {
 
   const onSubmit = e => {
     e.preventDefault();
-    axiosWithAuth()
-    .post('/login', login)
+    return axiosWithAuth()
+    .post('/auth/login', login)
     // console.log('login is firing')
     .then(res => {
         localStorage.setItem('token', res.data.payload);
-        props.history.push('/protected');
+        props.history.push('/myboard');
     })
         .catch(err => console.log('login error', err.response));
   }
@@ -61,12 +61,10 @@ const LoginPage = props => {
   return (
     <StyledLogin>
       <form className="login-page" onSubmit={onSubmit}>
-        <label htmlFor="email">Email Address: </label>
-          <input type="text" name='email' placeholder="example@email.com..." email={login.email} onChange={handleChanges} required />
-          <label htmlFor="email">Password: </label>
-          <input type="text" name='password' placeholder="Password..." password={login.password} onChange={handleChanges} required />
-
-
+        <label htmlFor="username">Enter Username (must match your registered username): </label>
+        <input type="text" name='username' placeholder="JohnDoe123..." username={login.username} onChange={handleChanges} required />
+        <label htmlFor="email">Password (must match your registered password): </label>
+        <input type="text" name='password' placeholder="12345678..." password={login.password} onChange={handleChanges} required />
         <button type="submit">Login</button>
         <p>
           Need to sign up? <br />
