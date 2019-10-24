@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-// import { axiosWithAuth } from '../utils/axiosWithAuth';
-// import PrivateRoute from '../utils/PrivateRoute';
-import axios from 'axios'
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
 const StyledLogin = styled.div` 
@@ -33,7 +31,7 @@ const StyledLogin = styled.div`
 const LoginPage = props => {
   console.log(props);
   const [login, setLogin] = useState({
-    username: '',
+    email: '',
     password: ''
   });
 
@@ -43,14 +41,14 @@ const LoginPage = props => {
       [e.target.name]: e.target.value
     }
     )
-    console.log('is this firing')
+    // console.log('handlechange login is firing')
   };
 
   const onSubmit = e => {
     e.preventDefault();
-    axios
-    .post('https://pintereach-buildweek.herokuapp.com/', login)
-    console.log('its working')
+    axiosWithAuth()
+    .post('/login', login)
+    // console.log('login is firing')
     .then(res => {
         localStorage.setItem('token', res.data.payload);
         props.history.push('/protected');
@@ -63,14 +61,16 @@ const LoginPage = props => {
   return (
     <StyledLogin>
       <form className="login-page" onSubmit={onSubmit}>
-        <input type="text" placeholder="JohnDoe123..." value={login.username} onChange={handleChanges} required />
-        <input type="text" placeholder="Password..." value={login.password} onChange={handleChanges} required />
+        <label htmlFor="email">Email Address: </label>
+          <input type="text" name='password' placeholder="example@email.com..." email={login.email} onChange={handleChanges} required />
+          <label htmlFor="email">Password: </label>
+          <input type="text" name='password' placeholder="Password..." password={login.password} onChange={handleChanges} required />
 
 
-        <button type="submit">Sign Up</button>
+        <button type="submit">Login</button>
         <p>
-          Aleady have an account? <br />
-          <a href='/login'>Log in here</a>
+          Need to sign up? <br />
+          <a href='/signup'>Sign Up Now!</a>
         </p>
       </form>
     </StyledLogin>

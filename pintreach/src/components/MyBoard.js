@@ -137,7 +137,6 @@ function MyBoard(props) {
                             <Route exact path="/add-article" render={props => <AddArticle {...props} addNewArticle={props.addNewArticle} />} />
                             <Route path="/community" component={Community} />
                             <Route path="/log-in" component={LoginPage} />
-                            {/* <AddArticle addNewArticle={addNewArticle} /> */}
                         </nav>
                     </div>
                 </StyledMyBoard>

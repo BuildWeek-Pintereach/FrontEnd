@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  /* background-color:lightsteelblue; */
+  font: inherit;
 }
 
 .App-logo {
@@ -21,9 +21,9 @@
 }
 
 /* SBH -- this code will be implemented last
+background-color:lightsteelblue;
 height: 500px;
 min-height: 100vh;
-background-image: url("background.png");
 background-size: cover;
 background-repeat: no-repeat;
 background-position: top;
@@ -32,4 +32,4 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 text-align: center;
-font-family: sans-serif;  */
+font: inherit;  */

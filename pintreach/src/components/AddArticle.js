@@ -134,9 +134,9 @@ const AddArticle = props => {
     });
 
 
-    const changeHandler = event => {
-        setArticle({ ...article, [event.target.name]: event.target.value });
-        console.log(event.target.value);
+    const changeHandler = e => {
+        setArticle({ ...article, [e.target.name]: e.target.value });
+        // console.log(event.target.value);
 
     }
     const submitForm = event => {
