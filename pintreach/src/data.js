@@ -1,6 +1,6 @@
 // let nextId = 7;
 
-export default [
+const friends = [
   {
     id: 1,
     firstname: "Ben",
@@ -51,4 +51,5 @@ export default [
   }
 ];
 
+export default friends;
 

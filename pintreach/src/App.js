@@ -2,18 +2,24 @@ import React from 'react';
 
 import './App.css';
 import AddArticle from './components/AddArticle';
-import MyBoard from './components/MyBoard';
+// import MyBoard from './components/MyBoard';
 import Community from './components/Community';
 import { Route, Link } from 'react-router-dom';
+import data from "./data";
 
 function App() {
+ 
+  
+
   return (
+
     <div className="App">
+      <Community />
       {/* <header className="App-header">
       </header> */}
-      <Link to="/myboard">My Board</Link>
+      <Link to="/community">Community</Link>
       <Route path="/add-article" component={AddArticle} />
-      <Route exact path="/myboard" component={MyBoard} />
+      {/* <Route exact path="/myboard" component={MyBoard} /> */}
       <Route path='/community' component={Community}/>
     </div>
   );

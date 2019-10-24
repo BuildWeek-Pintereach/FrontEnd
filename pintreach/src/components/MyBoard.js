@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { Link, Route } from 'react-router-dom';
 import Community from './Community';
 import LoginPage from './LoginPage';
 import styled from 'styled-components';
 import AddArticle from "./AddArticle";
+import React from 'react';
 
 const StyledMyBoard = styled.div`
 .outer{
@@ -92,22 +93,12 @@ main{
 
 
 function MyBoard(props) {
-
-    const [articles, setArticles] = useState([{
-        author: 'James Stevens', title: 'My Research Paper', category: 'Business', url: 'https://abc.com'
-    }, { author: 'Jessica Parker', title: 'The HealthInsider', category: 'Health', url: 'https://abc.com' },
-    { author: 'Sammy Williams', title: 'The Psychologist and ME', category: 'Health', url: 'https://abc.com' }
-    ])
-
-    const addNewArticle = article => {
-        setArticles([...articles, article])
-        console.log(article)
-
+    function routeToBoard(ev, article) {
+        ev.preventDefault();
+        props.history.push(`/myboard/${article.id}`);
     }
-
-    console.log(articles, addNewArticle)
+    
     return (
-
         <div className="my-board">
 
             <header>
@@ -134,19 +125,20 @@ function MyBoard(props) {
             </header>
             <StyledMain>
                 <main>
-                    {articles.map(article => {
+                    {props.articles.map(article => {
                         return (
-                            <div key={article.author}>
-                                <h1>author:{article.author}</h1>
-                                <p>title:{article.title}</p>
-                                <p>category:{article.category}</p>
-                                <p>url:{article.url}</p>
+                            <div onClick={ev => routeToBoard(ev, article)}
+                                className='myboard-card' 
+                                key={article.id}>
+                                    <p>{article.title}</p>
+                                    <p>{article.url}</p>
+                                    <p>{article.type}</p>
                             </div>
                         )
                     })}
                 </main>
             </StyledMain>
-            {/* <button>Edit Article </button> */}
+           
         </div>
     );
 

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
+// import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
 import { Link, Route } from 'react-router-dom';
 import Community from './Community';
 import LoginPage from './LoginPage';
 import MyBoard from './MyBoard';
+import axios from 'axios';
 
 const StyledAddArticle = styled.div`
 .outer{
@@ -137,22 +138,31 @@ const AddArticle = props => {
         // console.log(event.target.value);
 
     }
+    // const submitForm = e => {
+    //     e.preventDefault();
+    //     axiosWithAuth()
+    //     .post(`...`, article)
+    //     // console.log('is posting')
+    //     // .then(res => {
+    //     //     props.history.push('myboard', res.data)
+    //     // })
+    //     // .catch(err => console.log("it did not work", err.response));
+    //     console.log('submit is working');
+    //     //addNewArticle(article);
+    //     setArticle({ author: "", title: "", category: "", url: "" });
+    // };
+
     const submitForm = e => {
         e.preventDefault();
-        axiosWithAuth()
-        .post(`/ck21z8u7t00001xdulbmu8dfs/article`, article)
-        // console.log('is posting')
-        // .then(res => {
-        //     props.history.push('myboard', res.data)
-        // })
-        // .catch(err => console.log("it did not work", err.response));
-        console.log('submit is working');
-        //addNewArticle(article);
-        setArticle({ author: "", title: "", category: "", url: "" });
-    };
+        axios
+        .post('https://my-json-server.typicode.com/typicode/demo/posts', article)
+        .then(res => {
+            props.history.push('/myboard', res.data)
+        })
+        .catch(err => console.log(err.response))
+    }
 
     return (
-
         <div className="add-article">
             <header>
                 <StyledAddArticle>
