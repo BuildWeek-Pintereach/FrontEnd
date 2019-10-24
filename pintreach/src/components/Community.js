@@ -32,6 +32,14 @@ const Friends = styled.div`
     width: 100%;
   }
 `;
+
+const Search = styled.div`
+  width: 100%;
+  input {
+    width: 70%;
+  }
+`;
+
 const Articles = styled.div`
   padding-right: 4%;
   display: flex;
@@ -48,6 +56,7 @@ const Logo = styled.h2`
 
 const FriendLink = styled.button`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 10px 0 0 0;
@@ -127,11 +136,13 @@ const StyledMyBoard = styled.div`
     text-align: center;
     h1 {
       color: rgba(245, 221, 221, 1);
-      font-size: 5vw;
+      font-size: 4.3vw;
+      margin: 2% 0 0 0;
     }
     h2 {
       color: rgba(245, 221, 221, 1);
-      font-size: 3vw;
+      font-size: 2.5vw;
+      padding-bottom: 10px;
     }
   }
 
@@ -163,6 +174,26 @@ const Community = props => {
   const [user, setUser] = useState();
   console.log(userID);
 
+  /////////////////Grab Users
+  useEffect(() => {
+    axios.get(`https://bw-backend.herokuapp.com/users`).then(response => {
+      console.log("This is users", response);
+    });
+  }, []);
+
+  ////////////////////Search Form
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState(friends);
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+  };
+  useEffect(() => {
+    const results = friends.filter(person =>
+      person.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setSearchResults(results);
+  }, [searchTerm]);
+
   return (
     <Body>
       <header>
@@ -188,58 +219,63 @@ const Community = props => {
         <h1>See What Yours Friends Are Looking Into!</h1>
         <FriendsandArticles>
           <Friends>
-            <SearchForm />
-            {friends.map((f, index) => {
-              return (
-                <FriendLink
-                  key={index}
-                  onClick={e => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setUserID(f.id);
-                    setUser(f);
-                  }}
-                >
-                  <h3>{f.name}</h3>
-                </FriendLink>
-              );
-            })}
+            <Search>
+              <input
+                type="text"
+                placeholder="Search"
+                value={searchTerm}
+                onChange={handleChange}
+              />
+            </Search>
+
+            {searchResults.map(item => (
+              <FriendLink
+                onClick={f => {
+                  f.preventDefault();
+                  f.stopPropagation();
+                  setUserID(f.id);
+                  setUser(f);
+                }}
+              >
+                {item.name}
+              </FriendLink>
+            ))}
           </Friends>
           <Articles>
             <ArticleCat>Biology</ArticleCat>
             <LinkDiv>
-              {user &&
+              {/* {user &&
                 user.articles.Biology.map(item => {
                   return <a>{item}</a>;
-                })}
+                })} */}
             </LinkDiv>
             <ArticleCat>Psychology</ArticleCat>
             <LinkDiv>
-              {user &&
+              {/* {user &&
                 user.articles.Psychology.map(item => {
                   return <a>{item}</a>;
-                })}
+                })} */}
             </LinkDiv>
             <ArticleCat>Technology</ArticleCat>
             <LinkDiv>
-              {user &&
+              {/* {user &&
                 user.articles.Technology.map(item => {
                   return <a>{item}</a>;
-                })}
+                })} */}
             </LinkDiv>
             <ArticleCat>Physics</ArticleCat>
             <LinkDiv>
-              {user &&
+              {/* {user &&
                 user.articles.Physics.map(item => {
                   return <a>{item}</a>;
-                })}
+                })} */}
             </LinkDiv>
             <ArticleCat>Health</ArticleCat>
             <LinkDiv>
-              {user &&
+              {/* {user &&
                 user.articles.Health.map(item => {
                   return <a>{item}</a>;
-                })}
+                })} */}
             </LinkDiv>
           </Articles>
         </FriendsandArticles>
