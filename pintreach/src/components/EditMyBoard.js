@@ -1,20 +1,20 @@
 import React from "react";
-import axios from 'axios';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
-function EditArticle(props) {
-  const article = props.articles.find(
+function EditMyBoard(props) {
+  const editBoard = props.articles.find(
     thing => `${thing.id}` === props.match.params.id
   );
 
-  if (!props.articles.length || !article) {
+  if (!props.articles.length || !editBoard) {
     return <h2>Loading article data...</h2>;
   }
 
   const handleDelete = e => {
     e.preventDefault();
-    // axios
-    //   .delete(`https://pintereach-be.herokuapp.com/article/${id}`)
+    // axiosWithAuth()
+    //   .delete(`/article/${editBoard.id}`)
     //    console.log('delete call is firing')
     //   .then(res => {
     //     props.updateArticles(res.data);
@@ -25,7 +25,7 @@ function EditArticle(props) {
 
   return (
     <div className="edit-article-wrapper">
-      <div className="edit-article-header">
+      {/* <div className="edit-article-header">
         <div className="edit-title-wrapper">
           <h2>{article.category}</h2>
           <h2>{article.title}</h2>
@@ -41,9 +41,9 @@ function EditArticle(props) {
       </button>
       <button className="md-button" onClick={handleDelete}>
         Delete
-      </button>
+      </button> */}
     </div>
   );
 }
 
-export default EditArticle;
+export default EditMyBoard;

@@ -9,6 +9,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           if (localStorage.getItem('token')) {
             return <Component {...props} />;
           } else {
+            alert("You must be logged in to view your board!")
             return <Redirect to="/login" />;
           }
         }}

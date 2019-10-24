@@ -172,7 +172,8 @@ const StyledMyBoard = styled.div`
 const Community = props => {
   const [userID, setUserID] = useState();
   const [user, setUser] = useState();
-  console.log(userID);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState(friends);
 
   /////////////////Grab Users
   useEffect(() => {
@@ -182,8 +183,6 @@ const Community = props => {
   }, []);
 
   ////////////////////Search Form
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState(friends);
   const handleChange = event => {
     setSearchTerm(event.target.value);
   };

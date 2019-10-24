@@ -1,38 +1,50 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
-// import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-
+const StyledPage = styled.div`
+  background-color:lightsteelblue;
+  height: 500px;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`
 const StyledSignUp = styled.div`
+.login-form
+  font-color: #fff;
+  padding: 100px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
 
-.sign-up-form {
-    font-color: #fff;
-    padding: 100px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    }
-
-    .input {
-        margin-top:20px;
-    }
-
-    button {
-        padding:10px;
-        border-radius:10px
-        background-color:darkgray;
-    }
-
+input {
+  margin-left:10px;
+  margin-bottom:10px;
+}
+    
+button {
+  padding:10px;
+  border-radius:10px
+  background-color:darkgray;
+}
 `;
+
 
 const SignUpPage = props => {
   console.log(props);
     const [signup, setSignup] = useState({
         username: '',
-        email: '',
         password: ''
     });
 
@@ -42,43 +54,44 @@ const SignUpPage = props => {
             [e.target.name]: e.target.value
             }
         )
-        console.log('handlechange is firing')
+        // console.log('handlechange is firing')
     };
 
     const onSubmit = e => {
         e.preventDefault();
-        // axiosWithAuth()
-        // .post('', signup)
+        console.log('thesignup', signup)
+        return axiosWithAuth()
+        // any call that is going to need a response after a post* -- you have to do 'return' axiosWithAuth() -- *only post
+        .post( '/auth/register', signup)
           // console.log('onsubmit is firing')
-        // .then(res => {
-        //     localStorage.setItem('token', res.data.payload);
-        //     props.history.push('/login');
-        // })
-        //     .catch(err => console.log('login error', err.response));
+        .then(res => {
+            console.log('props', props)
+            localStorage.setItem('token', res.data.token);
+            props.history.push('/login');
+            return true
+        })
+            .catch(err => console.log(err.response));
     }
 
-    
-
   return (
+    <StyledPage>
     <StyledSignUp>
       <form className="sign-up-form" onSubmit={onSubmit}>
-        <label htmlFor="username">Create a Username: </label>
-        <input type="text" placeholder="Username..." value={signup.username} onChange={handleChanges} required/>
+        <label htmlFor="first-name">Username (must be 8 or more characters): </label>
+        <input type="text" name='username' placeholder="JohnDoe123..." username={signup.username} onChange={handleChanges} required/>
         <br />
-        <label htmlFor="email">Email Address: </label>
-        <input type="text" placeholder="Email Address..." value={signup.email} onChange={handleChanges} required/>
-        <br />
-        <label htmlFor="password">Password: </label>
-        <input type="text" placeholder="Password..." value={signup.password} onChange={handleChanges} required/>
+        <label htmlFor="password">Password (must be 8 or more characters): </label>
+        <input type="text" name='password' placeholder="12345678..." password={signup.password} onChange={handleChanges} required="Password must be 8 characters!"/>
         <br />
 
         <button type="submit">Sign Up</button>
         <p>
           Aleady have an account? <br />
-          <a href='/login'>Log in here</a>
+          <Link to='/login'>Log in here</Link>{" "}
         </p>
       </form>
     </StyledSignUp>
+    </StyledPage>
   );
 };
 

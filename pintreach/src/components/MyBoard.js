@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { Link, Route } from 'react-router-dom';
 import Community from './Community';
 import LoginPage from './LoginPage';
 import styled from 'styled-components';
+import AddArticle from "./AddArticle";
+import React from 'react';
 
 const StyledMyBoard = styled.div`
 .outer{
@@ -19,6 +21,8 @@ const StyledMyBoard = styled.div`
     border-bottom: 3px solid rgba(107, 78, 113, 1);
     top: 0%;
     max-height: 19vh;
+    @media  (max-width: 375px){font-size: 2rem; display:flex; flex-direction: column;}
+    @media (max-width: 768px){font-size: 2rem;}
     };
     
     
@@ -28,10 +32,14 @@ const StyledMyBoard = styled.div`
         h1{
             color:rgba(245, 221, 221, 1);
             font-size: 3rem;
+            @media  (max-width: 375px){font-size: 1rem; display: flex; flex-direction:column;}
+            @media (max-width: 768px){font-size: 2rem;}
         }
         h2{
             color:rgba(245, 221, 221, 1);
             font-size: 2rem;
+            @media (max-width: 375px){font-size: 2rem; display: flex; flex-direction: column;}
+            @media  (max-width:768px){font-size: 3rem;}
         }
         
     
@@ -55,7 +63,9 @@ const StyledMyBoard = styled.div`
             &:hover{
                 color: rgba(245, 221, 221, 1);
             }
-          
+            @media (max-width: 375px){font-size: 1rem; display:flex; flex-direction:column;}
+            @media  (max-width:768px){font-size: 2rem;}
+        } 
         } 
 }
 `;
@@ -83,23 +93,13 @@ main{
 
 
 function MyBoard(props) {
-
-    const [articles, setArticles] = useState([{
-        author: 'James Stevens', title: 'My Research Paper', category: 'Business', url: 'https://abc.com'
-    }, { author: 'Jessica Parker', title: 'The HealthInsider', category: 'Health', url: 'https://abc.com' },
-    { author: 'Sammy Williams', title: 'The Psychologist and ME', category: 'Health', url: 'https://abc.com' }
-    ])
-
-    const addNewArticle = article => {
-        setArticles([...articles, article])
-        console.log(article)
-
+    function routeToBoard(ev, article) {
+        ev.preventDefault();
+        props.history.push(`/myboard/${article.id}`);
     }
-
-    console.log(articles)
+    
     return (
-
-        <div className="myboard">
+        <div className="my-board">
 
             <header>
                 <StyledMyBoard>
@@ -108,35 +108,33 @@ function MyBoard(props) {
                         <div>
                             <h1>Pintereach</h1>
                             <h2>Your References Consolidated</h2>
-
                         </div>
                         <nav>
+
                             <Link to="/add-article">Add Article</Link>
                             <a href="/community">Community</a>
                             <Link to="/login">Log Out</Link>
 
-                            <Route path="/my-board" component={MyBoard} />
-                            <Route path="/community" component={Community} />
-                            <Route path="/log-in" component={LoginPage} />
                         </nav>
                     </div>
                 </StyledMyBoard>
             </header>
             <StyledMain>
-              <main>
-                {articles.map(article => {
-                  return (
-                    <div key={article.author}>
-                      <h1>author:{article.author}</h1>
-                      <p>title:{article.title}</p>
-                      <p>category:{article.category}</p>
-                      <p>url:{article.url}</p>
-                    </div>
-                  )
-                })}
-              </main>
-          </StyledMain>
-            {/* <button>Edit Article </button> */}
+                <main>
+                    {props.articles.map(article => {
+                        return (
+                            <div onClick={ev => routeToBoard(ev, article)}
+                                className='myboard-card' 
+                                key={article.id}>
+                                    <p>{article.title}</p>
+                                    <p>{article.url}</p>
+                                    <p>{article.type}</p>
+                            </div>
+                        )
+                    })}
+                </main>
+            </StyledMain>
+           
         </div>
     );
 
