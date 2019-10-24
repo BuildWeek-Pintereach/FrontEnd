@@ -124,8 +124,8 @@ const AddArticle = props => {
     const { addNewArticle, initialCard } = props;
     const [article, setArticle] = useState(initialCard || {
         title: "",
-        url: "",
-        type:''
+        link: "",
+        category_ids:''
     });
 
 
