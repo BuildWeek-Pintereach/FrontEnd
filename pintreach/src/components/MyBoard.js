@@ -1,10 +1,16 @@
+<<<<<<< HEAD
+import React, { useState, useEffect } from "react";
+=======
 // import React, { useState } from "react";
+>>>>>>> 56eb4e4a5177876f11133c68222c64315556c488
 import { Link, Route } from 'react-router-dom';
 import Community from './Community';
 import LoginPage from './LoginPage';
 import styled from 'styled-components';
 import AddArticle from "./AddArticle";
 import React from 'react';
+
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const StyledMyBoard = styled.div`
 .outer{
@@ -21,25 +27,29 @@ const StyledMyBoard = styled.div`
     border-bottom: 3px solid rgba(107, 78, 113, 1);
     top: 0%;
     max-height: 19vh;
-    @media  (max-width: 375px){font-size: 2rem; display:flex; flex-direction: column;}
-    @media (max-width: 768px){font-size: 2rem;}
+    @media(max-width: 500px){font-size: 0.5rem; display:flex; flex-direction: column;}
+    @media(max-width: 820px){font-size: 1rem;}
     };
     
     
     div{
         width:49%;
         text-align: center;
+       
         h1{
             color:rgba(245, 221, 221, 1);
             font-size: 3rem;
-            @media  (max-width: 375px){font-size: 1rem; display: flex; flex-direction:column;}
-            @media (max-width: 768px){font-size: 2rem;}
+            margin-bottom:5px;
+            @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction:column;}
+            @media(max-width: 820px){font-size: 1rem;}
         }
         h2{
             color:rgba(245, 221, 221, 1);
-            font-size: 2rem;
-            @media (max-width: 375px){font-size: 2rem; display: flex; flex-direction: column;}
-            @media  (max-width:768px){font-size: 3rem;}
+            margin-bottom:60px;
+            line-height:1;
+            font-size: 1.6rem;
+            @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction: column;}
+            @media(max-width:820px){font-size: 1rem;}
         }
         
     
@@ -63,8 +73,8 @@ const StyledMyBoard = styled.div`
             &:hover{
                 color: rgba(245, 221, 221, 1);
             }
-            @media (max-width: 375px){font-size: 1rem; display:flex; flex-direction:column;}
-            @media  (max-width:768px){font-size: 2rem;}
+            @media(max-width: 500px){font-size: 0.5rem; display:flex; flex-direction:column;}
+            @media(max-width:825px){font-size: 1rem;}
         } 
         } 
 }
@@ -79,19 +89,71 @@ main{
         padding:2%;
         width:28%;
         background-color: rgba(58, 68, 84, 1);
+        margin:10px;
         h1{
          
            color: rgba(245, 221, 221, 1);
+           font-size:1rem;
         
         }
+        @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction:column;}
+            @media(max-width: 820px){font-size: 1rem;}
+
         p{
             color: rgba(245, 221, 221, 1);  
         }
+        @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction:column;}
+            @media(max-width: 820px){font-size: 1rem;}
+
     }
+    
 }
 `;
 
 
+<<<<<<< HEAD
+const MyBoard = props => {
+    console.log(props);
+
+    const [article, setArticle] = useState({});
+    //     id: '1', title: 'My Research Paper', type: 'Business', url: 'https://abc.com'
+    // }, { id: '2', title: 'The HealthInsider', type: 'Health', url: 'https://abc.com' },
+    // { id: '3', title: 'The Psychologist and ME', type: 'Health', url: 'https://abc.com' }
+    // ])
+    useEffect(() => {
+        const id = props.match.params.id;
+        // axiosWithAuth()
+        //  .get('/articles')
+        //.get(`https://bw-backend.herokuapp.com/users/articles`)
+        axios
+            .get(`https://jsonplaceholder.typicode.com/posts/`)
+            //.get(`https://pintereach-be.herokuapp.com/${id}articles`)
+            .then(response => {
+                console.log("response", response);
+                setArticle(response.data)
+
+            }, [])
+            .catch(error => {
+                console.error("Server Error", error);
+
+            }, [])
+    })
+    const addNewArticle = article => {
+
+        setArticle([...article, article])
+
+        console.log(articles)
+    }
+    if (!article) {
+        return <div>Loading articles information...</div>;
+
+    }
+    // console.log(articles)
+    //const { category_ids, title, link } = props.articles;
+    return (
+
+        <div className="my-board" >
+=======
 function MyBoard(props) {
     function routeToBoard(ev, article) {
         ev.preventDefault();
@@ -100,6 +162,7 @@ function MyBoard(props) {
     
     return (
         <div className="my-board">
+>>>>>>> 56eb4e4a5177876f11133c68222c64315556c488
 
             <header>
                 <StyledMyBoard>
@@ -112,15 +175,34 @@ function MyBoard(props) {
                         <nav>
 
                             <Link to="/add-article">Add Article</Link>
-                            <a href="/community">Community</a>
+                            <Link to="/community">Community</Link>
                             <Link to="/login">Log Out</Link>
+<<<<<<< HEAD
+                            {/* <AddArticle addNewArticle={addNewArticle} /> */}
+                            <Route exact path="/add-article" render={props => <AddArticle {...props} articles={articles} addNewArticle={addNewArticle} />} />
+                            <Route path="/community" component={Community} />
+                            <Route path="/log-in" component={LoginPage} />
+                            <Route path="/add-article" render={props => <AddArticle {...props} articles={articles} addNewArticle={addNewArticle} />} />
+=======
 
+>>>>>>> 56eb4e4a5177876f11133c68222c64315556c488
                         </nav>
                     </div>
                 </StyledMyBoard>
             </header>
             <StyledMain>
                 <main>
+<<<<<<< HEAD
+                    console.log(articles)
+                    {articles && articles.map(article => {
+                        return (
+                            <div key={article.category_ids} className="article-id">
+                                <h1>Title:{article.title}</h1>
+                                {/* <MyBoardList users={yBoardList} /> */}
+                                <p className="article-link">
+                                    Desc: <strong>{article.link}</strong>
+                                </p>
+=======
                     {props.articles.map(article => {
                         return (
                             <div onClick={ev => routeToBoard(ev, article)}
@@ -129,13 +211,20 @@ function MyBoard(props) {
                                     <p>{article.title}</p>
                                     <p>{article.url}</p>
                                     <p>{article.type}</p>
+>>>>>>> 56eb4e4a5177876f11133c68222c64315556c488
                             </div>
                         )
                     })}
                 </main>
+                {/* <button onClick={addNewArticle} className="add-button">Add Article </button> */}
             </StyledMain>
+<<<<<<< HEAD
+
+        </div >
+=======
            
         </div>
+>>>>>>> 56eb4e4a5177876f11133c68222c64315556c488
     );
 
 

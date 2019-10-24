@@ -51,16 +51,16 @@ import AddArticle from "./components/AddArticle";
 
 function App() {
   return (
-     <div className="App">
-       <Router>
+    <div className="App">
+      <Router>
         <Switch>
           <Route exact path="/" component={SignUpPage} />
           <Route path="/login" component={LoginPage} />
-          <PrivateRoute path="/myboard" component={MyBoard} /> 
+          <PrivateRoute path="/myboard" component={MyBoard} />
           {/* <Route exact path="/edit-article" component={EditMyBoard} /> */}
-          <Route path="/add-article" component={AddArticle} />   
+          <Route path="/add-article" component={AddArticle} />
           <Route exact path="/community" component={Community} />
-       </Switch>
+        </Switch>
       </Router>
     </div>
 
