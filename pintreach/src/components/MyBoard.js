@@ -109,16 +109,16 @@ const MyBoard = props => {
             .get(`https://jsonplaceholder.typicode.com/posts/`)
             //.get(`https://pintereach-be.herokuapp.com/${id}articles`)
             .then(response => {
-                console.log("response", response);
+                //  console.log("response", response);
                 setArticle(response.data)
             })
             .catch(error => {
                 console.error("Server Error", error);
             });
     }, [])
-    const saveArticle = () => {
-        const addNewArticle = props.addNewArticle;
-        addNewArticle(article)
+    const addNewArticle = article => {
+
+        setArticle([...article, article])
 
         console.log(article)
     }
@@ -145,10 +145,11 @@ const MyBoard = props => {
                             <Link to="/add-article">Add Article</Link>
                             <Link to="/community">Community</Link>
                             <Link to="/login">Log Out</Link>
-
-                            <Route exact path="/add-article" render={props => <AddArticle {...props} addNewArticle={props.addNewArticle} />} />
+                            {/* <AddArticle addNewArticle={addNewArticle} /> */}
+                            <Route exact path="/add-article" render={props => <AddArticle {...props} article={article} addNewArticle={addNewArticle} />} />
                             <Route path="/community" component={Community} />
                             <Route path="/log-in" component={LoginPage} />
+                            <Route path="/add-article" render={props => <AddArticle {...props} article={article} addNewArticle={addNewArticle} />} />
                         </nav>
                     </div>
                 </StyledMyBoard>
@@ -160,7 +161,7 @@ const MyBoard = props => {
                             <div key={article.id} className="article-id">
                                 <h1>Title:{article.title}</h1>
 
-                                <p>className="article-desc">
+                                <p className="article-desc">
                                     Desc: <strong>{article.body}</strong>
                                 </p>
                                 {/* <p>{article.type}</p> */}
@@ -169,7 +170,7 @@ const MyBoard = props => {
                         )
                     })}
                 </main>
-                <button onClick={saveArticle} className="add-button">Add Article </button>
+                <button onClick={addNewArticle} className="add-button">Add Article </button>
             </StyledMain>
 
         </div>

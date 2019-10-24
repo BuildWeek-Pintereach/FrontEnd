@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-// import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import { Link, Route } from 'react-router-dom';
 import Community from './Community';
@@ -122,41 +122,61 @@ main{
 
 
 
-const AddArticle = props => {
-    const { addNewArticle, initialCard } = props;
+const AddArticle = ({ props, addArticle, initialCard }) => {
+
     const [article, setArticle] = useState(initialCard || {
-        userId: "",
-        id: "",
+
+
+        id: Date.now(),
         body: "",
         title: "",
 
 
     });
 
+    // useEffect(() => {
+    //   axios
 
-    const changeHandler = e => {
-        setArticle({ ...article, [e.target.name]: e.target.value });
+    //     .post(`https://reqres.in/api/users/, values`)
+    //
+    //  .then(response => {
+    //     console.log('is posting')
+    //     props.history.push('my-board', response.data)
+    // }, [])
+    //   .catch(err => console.log("it did not work", err.response));
+    //console.log('submit is working');
+    // }, [])
+
+
+
+
+    const handleChange = event => {
+        setArticle({ ...article, [event.target.name]: event.target.value });
         // console.log(event.target.value);
 
     }
-    const submitForm = event => {
+    const handleSubmit = event => {
         event.preventDefault();
-        // axios
-        // .post(`https://jsonplaceholder.typicode.com/posts}`)
-        // console.log('is posting')
-        // .then(res => {
-        //     props.history.push('myboard', res.data)
-        // })
-        // .catch(err => console.log("it did not work", err.response));
-        console.log('submit is working');
-        props.addNewArticle(article);
-        setArticle({
-            userId: "",
-            id: "",
-            body: "",
-            title: "",
-        });
+        props.addArticle(article);
+        // setArticle({
+
+        //     id: Date.now(),
+        //     body: "",
+        //     title: "",
+        // });
     };
+    //axios
+    //.post(`https://jsonplaceholder.typ`)
+    // .post(`https://reqres.in/api/users/, values`)
+
+    // .then(response => {
+    //console.log('is posting')
+    // props.history.push('my-board', response.data)
+    // })
+    // .catch(err => console.log("it did not work", err.response));
+    //console.log('submit is working');
+
+
 
     return (
 
@@ -182,27 +202,27 @@ const AddArticle = props => {
             <StyledMain>
                 <main>
                     <div>
-                        <form onSubmit={submitForm}>
-                            <label htmlFor="author">Author:</label>
-                            <input id="Date.now()" type="text" placeholder="Author" name="author" onChange={changeHandler} value={props.author} />
-
+                        <form onSubmit={handleSubmit}>
                             <label htmlFor="title">Title:</label>
-                            <input id="Date.now()" type="text" placeholder="Title" name="title" onChange={changeHandler} value={props.title} />
-                            <label>Category:<br></br>
+                            <input id="Date.now()" type="text" placeholder="Title" name="title" onChange={handleChange} value={article.title} />
+
+                            <label htmlFor="desc">Desc:</label>
+                            <input id="Date.now()" type="text" placeholder="Desc" name="body" onChange={handleChange} value={article.body} />
+                            <button type="submit">Add Article</button>
+                            {/* <label>Type:<br></br>
                                 <select value={props.value} name="category" onChange={changeHandler} className="select">
                                     <option>Please Choose Category</option>
                                     <option value="biology">Biology</option>
                                     <option value="psychology">Psychology</option>
                                     <option value="Technology">Technology</option>
                                     <option value="physics">Physics</option>
-                                    <option value="Health">Health</option>
-                                </select>
-                            </label><br></br>
+                                    <option value="Health">Health</option> */}
+                            {/* </select>
+                            </label><br></br> */}
 
 
-                            <label htmlFor="Link">Link:</label>
-                            <input id="Date.now()" type="url" name="url" placeholder="https://abc.com" onChange={changeHandler} value={props.link} />
-                            <button type="submit">Add Article</button>
+                            {/* <label htmlFor="Url">Url:</label>
+                            <input id="Date.now()" type="url" name="url" placeholder="https://abc.com" onChange={changeHandler} value={props.link} */}
 
                         </form>
                     </div>
