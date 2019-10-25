@@ -2,13 +2,12 @@ import React, { useState } from "react";
 
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const AddArticle = () => {
+const AddArticle = (props) => {
   const [article, setArticle] = useState({
     title: "",
     link: ""
   });
-  article['token']='asdf'
-  console.log('an article', article);
+ 
 
   const handleChange = event => {
     setArticle({
@@ -28,7 +27,8 @@ const AddArticle = () => {
           ...article,
           title: "",
           link: ""
-        });
+        })
+        props.history.push('/myboard')
       })
       .catch(err => console.log("it did not work", err.response));
   };

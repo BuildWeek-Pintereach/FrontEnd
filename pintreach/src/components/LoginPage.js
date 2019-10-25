@@ -66,7 +66,7 @@ const LoginPage = props => {
     .post('/auth/login', login)
     // console.log('login is firing')
     .then(res => {
-        console.log(res)
+        // console.log(res)
         localStorage.setItem('token', res.data.token);
         props.history.push('/myboard');
     })
