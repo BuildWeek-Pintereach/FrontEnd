@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-
+import { Link } from 'react-router-dom';
 
 const StyledPage = styled.div`
   background-color:lightsteelblue;
@@ -87,7 +87,7 @@ const LoginPage = props => {
         <button type="submit">Login</button>
         <p>
           Need to sign up? <br />
-          <a href='/'>Sign Up Now!</a>
+          <Link to='/'>Sign Up Now!</Link>
         </p>
       </form>
     </StyledLogin>

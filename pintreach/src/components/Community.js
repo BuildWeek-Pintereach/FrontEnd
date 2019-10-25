@@ -203,9 +203,9 @@ const Community = () => {
               <h2>Your References Consolidated</h2>
             </div>
             <nav>
-            <a href='https://web-ui-2btl8bu6n.now.sh/index.html' target="_blank" rel="noopener noreferrer" alt='Click to visit the homepage.'>Home</a>
+            <a href='https://web-ui-hen4c6hpo.now.sh/' target="_blank" rel="noopener noreferrer" alt='Click to visit the homepage.'>Home</a>
               <Link to="/add-article">Add Article</Link>
-              <a href="/myboard">My Board</a>
+              <Link to="/myboard">My Board</Link>
               <Link to="/login">Log Out</Link>
             </nav>
           </div>

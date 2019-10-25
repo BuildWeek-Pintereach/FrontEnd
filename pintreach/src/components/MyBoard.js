@@ -131,7 +131,7 @@ const MyBoard = props => {
             </div>
             <nav>
               <a
-                href="https://web-ui-2btl8bu6n.now.sh/index.html"
+                href="https://web-ui-hen4c6hpo.now.sh/"
                 target="_blank" rel="noopener noreferrer"
                 alt="Click to visit the homepage."
               >
