@@ -1,16 +1,12 @@
 import React from 'react';
 
-const Article = props => {
+const Article = ({ article }) => {
+    const { title, link } = article;
     return (
-        <div class="article-list">
-            {props.articlesList && props.articlesList.map((article, index) =>
-                <div className="article" article={article} key={index} />
-
-
-            )}
+        <div>
+            <h1>Title:{title}</h1>
+            <p>Link:{link}</p>
         </div>
-
     )
 }
-
 export default Article;

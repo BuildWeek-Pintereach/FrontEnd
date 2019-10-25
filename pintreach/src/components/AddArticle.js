@@ -133,26 +133,13 @@ main{
 
 
 
-const AddArticle = ({ props, addArticle, initialCard }) => {
+const AddArticle = () => {
 
-    const [article, setArticle] = useState(initialCard || {
+    const [article, setArticle] = useState({
         title: "",
         link: "",
-        category_ids: ''
+
     });
-
-    // useEffect(() => {
-    //   axios
-
-    //     .post(`https://reqres.in/api/users/, values`)
-    //
-    //  .then(response => {
-    //     console.log('is posting')
-    //     props.history.push('my-board', response.data)
-    // }, [])
-    //   .catch(err => console.log("it did not work", err.response));
-    //console.log('submit is working');
-    // }, [])
 
 
 
@@ -168,23 +155,13 @@ const AddArticle = ({ props, addArticle, initialCard }) => {
             .post(`/users/articles`, article)
             // console.log('is posting')
             .then(res => {
-                props.history.push('/myboard', res.data)
+                setArticle({
+                    ...article, title: "", link: ""
+                })
             })
-            .catch(err => console.log("it did not work", err.response));
-        console.log('submit is working');
-        //addNewArticle(article);
-        setArticle({ title: "", category: "", url: "" });
-    };
-    //axios
-    //.post(`https://jsonplaceholder.typ`)
-    // .post(`https://reqres.in/api/users/, values`)
 
-    // .then(response => {
-    //console.log('is posting')
-    // props.history.push('my-board', response.data)
-    // })
-    // .catch(err => console.log("it did not work", err.response));
-    //console.log('submit is working');
+            .catch(err => console.log("it did not work", err.response));
+    }; ß
 
 
 
@@ -212,34 +189,15 @@ const AddArticle = ({ props, addArticle, initialCard }) => {
                     <div>
                         <form onSubmit={submitForm}>
                             <label htmlFor="title">Title:</label>
-                            <input id="Date.now()" type="text" placeholder="Title" name="title" onChange={handleChange} value={article.title} />
+                            <input type="text" placeholder="Title" name="title" onChange={handleChange} value={article.title} />
 
-                            <label htmlFor="desc">Desc:</label>
-                            <input id="Date.now()" type="text" placeholder="Desc" name="body" onChange={handleChange} value={article.body} />
-                            <button onClick={addArticle} className="add-button">Add Article </button>
-
-                            {/* <label>Type:<br></br>
-                                <select value={props.value} name="category" onChange={changeHandler} className="select">
-                                    <option>Please Choose Category</option>
-                                    <option value="biology">Biology</option>
-                                    <option value="psychology">Psychology</option>
-                                    <option value="Technology">Technology</option>
-                                    <option value="physics">Physics</option>
-                                    <option value="Health">Health</option> */}
-                            {/* </select>
-                            </label><br></br> */}
-
-
-                            {/* <label htmlFor="Url">Url:</label>
-                            <input id="Date.now()" type="url" name="url" placeholder="https://abc.com" onChange={changeHandler} value={props.link} */}
-
+                            <label htmlFor="link">Link:</label>
+                            <input type="text" placeholder="link" name="link" onChange={handleChange} value={article.link} />
+                            <button type="submit" className="add-button">Add Article </button>
                         </form>
                     </div>
                 </main>
             </StyledMain>
-
-
-
 
         </div>
 
