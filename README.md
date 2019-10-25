@@ -1,6 +1,6 @@
 # FrontEnd
 INTRODUCTION:
-The Pintreach app is built for users who want to save and organize articles/studies they have read into categories. This app keep track of articles and documentation.              
+The Pintreach app is built for users who want to save and organize articles/studies they have read into categories. This app keep track of articles saved to a user's board, and allows them to search for articles within the Community.              
 
 Mission statement: Empower people to discover things they love (and keep them).
 
