@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import friends from "./../data.js";
-import MyBoard from "./MyBoard";
+
 import axios from "axios";
-import LoginPage from "./LoginPage";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
-import SearchForm from "./CommunitySearch.js";
-// import { CommunityList } from "./CommunityList.js";
+
+
 
 const Body = styled.div`
   display: flex;
@@ -17,20 +14,6 @@ const Body = styled.div`
   h1 {
     color: rgba(245, 221, 221, 1);
     font-size: 3.5vw;
-  }
-`;
-
-const Friends = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  
-  width: 35%;
-  max-width: 35%;
-  form{
-    margin 0;
-    width: 100%;
   }
 `;
 
@@ -47,30 +30,10 @@ const Articles = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 65%;
-  max-width: 65%;
-`;
-const Logo = styled.h2`
-  padding: 0;
-  margin: 0;
+  width: 90%;
+  max-width: 90%;
 `;
 
-const FriendLink = styled.button`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 0 0 0;
-  color: rgba(194, 178, 180, 0.7);
-  &:hover {
-    color: rgba(245, 221, 221, 1);
-  }
-  background: rgba(58, 68, 84, 0.9);
-  border-radius: 10px;
-  height: 5vw;
-  width: 80%;
-  font-size: 1.4vw;
-`;
 
 const ArticleCat = styled.h2`
   background: rgba(58, 68, 84, 0.9);
@@ -82,15 +45,10 @@ const ArticleCat = styled.h2`
   max-width: 90%;
 `;
 
-const ArticleLink = styled.a`
-  box-sizing: border-box;
-  color: black;
-  max-width: 90%;
-`;
-
 const FriendsandArticles = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center
   max-width: 100%;
   margin-bottom: 40px;
 `;
@@ -101,6 +59,8 @@ const LinkDiv = styled.div`
   padding: 2%;
   background-color: rgba(58, 68, 84, 0.9);
   border-radius: 7px;
+  margin-bottom: 2%;
+  color: rgba(194, 178, 180, 0.7);
   a {
     text-align: center;
     color: rgba(194, 178, 180, 0.7);
@@ -164,9 +124,7 @@ const StyledMyBoard = styled.div`
   }
 `;
 
-const Community = props => {
-  const [userID, setUserID] = useState();
-  const [user, setUser] = useState();
+const Community = () => {
   const [articles, setArticles] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -178,7 +136,7 @@ const Community = props => {
       article.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(results);
-  }, [searchTerm]);
+  }, [articles, searchTerm]);
 
   useEffect(() => {
     axios
@@ -186,6 +144,7 @@ const Community = props => {
       .then(response => {
         console.log("This is users", response);
         setArticles(response.data);
+        setSearchResults(response.data);
       })
       .catch(error => {
         console.log("error", error);
@@ -203,7 +162,6 @@ const Community = props => {
       <header>
         <StyledMyBoard>
           <div className="outer">
-            {/* <Logo>Pintreach</Logo> */}
             <div>
               <h1>Pintereach</h1>
               <h2>Your References Consolidated</h2>
@@ -217,7 +175,7 @@ const Community = props => {
         </StyledMyBoard>
       </header>
       <div className="body">
-        <h1>See What Your Friends Are Looking Into!</h1>
+        <h1>See What Others Are Looking Into!</h1>
         <FriendsandArticles>
           <Articles>
             <Search>
@@ -231,12 +189,46 @@ const Community = props => {
             <ArticleCat>Community Articles</ArticleCat>
             {searchResults.map(item => {
               return (
-                <div>
+                <LinkDiv>
                   <h3>{item.title}</h3>
                   <a href={item.link}>{item.link}</a>
-                </div>
+                </LinkDiv>
               );
             })}
+            {/* <LinkDiv>
+            {user &&
+                user.articles.Biology.map(item => {
+                  return <a>{item}</a>;
+                })}
+          </LinkDiv>
+       <ArticleCat>Psychology</ArticleCat>
+            <LinkDiv>
+              {user &&
+                user.articles.Psychology.map(item => {
+                  return <a>{item}</a>;
+                })}
+            </LinkDiv>
+            <ArticleCat>Technology</ArticleCat>
+            <LinkDiv>
+              {user &&
+                user.articles.Technology.map(item => {
+                  return <a>{item}</a>;
+                })}
+            </LinkDiv>
+            <ArticleCat>Physics</ArticleCat>
+            <LinkDiv>
+              {user &&
+                user.articles.Physics.map(item => {
+                  return <a>{item}</a>;
+                })}
+            </LinkDiv>
+            <ArticleCat>Health</ArticleCat>
+            <LinkDiv>
+              {user &&
+                user.articles.Health.map(item => {
+                  return <a>{item}</a>;
+                })}
+            </LinkDiv> */}
           </Articles>
         </FriendsandArticles>
       </div>
