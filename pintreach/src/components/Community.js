@@ -12,7 +12,7 @@ import SearchForm from "./CommunitySearch.js";
 const Body = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 23vh;
+  padding-top: 10vh;
   background: rgba(83, 104, 126, 1);
   h1 {
     color: rgba(245, 221, 221, 1);
