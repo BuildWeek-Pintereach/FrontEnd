@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import MyBoard from "./MyBoard";
 import axios from "axios";
-import LoginPage from "./LoginPage";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const Body = styled.div`
   display: flex;
@@ -19,7 +16,6 @@ const Body = styled.div`
   @media (max-width: 500px) {
     padding-top: 30vw;
   }
-
   h1 {
     color: rgba(245, 221, 221, 1);
     font-size: 3.5vw;
@@ -49,10 +45,6 @@ const Articles = styled.div`
   justify-content: center;
   width: 90%;
   max-width: 90%;
-`;
-const Logo = styled.h2`
-  padding: 0;
-  margin: 0;
 `;
 
 const ArticleCat = styled.h2`
@@ -87,7 +79,6 @@ const LinkDiv = styled.div`
     &:hover {
       color: rgba(245, 221, 221, 1);
     }
-
     text-decoration: none;
     word-wrap: break-word;
     width: 100%;
@@ -107,7 +98,6 @@ const StyledMyBoard = styled.div`
     width: 100%;
     padding: 2%;
     background-color: rgba(58, 68, 84, 0.9);
-
     border-bottom-left-radius: 15%;
     border-bottom-right-radius: 15%;
     border-bottom: 3px solid rgba(107, 78, 113, 1);
@@ -118,7 +108,6 @@ const StyledMyBoard = styled.div`
       flex-direction: column;
     }
   }
-
   div {
     width: 49%;
     text-align: center;
@@ -140,7 +129,6 @@ const StyledMyBoard = styled.div`
       }
     }
   }
-
   nav {
     display: flex;
     justify-content: space-around;
@@ -149,13 +137,11 @@ const StyledMyBoard = styled.div`
     @media (max-width: 500px) {
       width: 80%;
     }
-
     a {
       width: 20%;
       padding: 2%;
       text-decoration: none;
-
-      font-size: 2vw;
+      font-size: 1.8vw;
       text-align: center;
       border-bottom: 3px solid rgba(107, 78, 113, 1);
       border-radius: 15%;
@@ -220,6 +206,14 @@ const Community = props => {
               <h2>Your References Consolidated</h2>
             </div>
             <nav>
+              <a
+                href="https://web-ui-hen4c6hpo.now.sh/"
+                target="_blank"
+                rel="noopener noreferrer"
+                alt="Click to visit the homepage."
+              >
+                Home
+              </a>
               <Link to="/add-article">Add Article</Link>
               <a href="/myboard">My Board</a>
               <Link to="/login">Log Out</Link>
@@ -234,7 +228,7 @@ const Community = props => {
             <Search>
               <input
                 type="text"
-                placeholder="Search"
+                placeholder="Search titles..."
                 value={searchTerm}
                 onChange={handleChange}
               />

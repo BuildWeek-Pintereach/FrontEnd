@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-
+import { Link } from 'react-router-dom';
 
 const StyledPage = styled.div`
   background-color:lightsteelblue;
@@ -34,7 +34,7 @@ input {
 }
     
 button {
-  padding:10px;
+  padding:5px;
   border-radius:10px
   background-color:darkblue;
   color:white;
@@ -66,7 +66,9 @@ const LoginPage = props => {
     .post('/auth/login', login)
     // console.log('login is firing')
     .then(res => {
-        localStorage.setItem('token', res.data.payload);
+        // console.log(res)
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('userid', res.data.id);
         props.history.push('/myboard');
     })
         .catch(err => console.log('login error', err.response));
@@ -85,7 +87,7 @@ const LoginPage = props => {
         <button type="submit">Login</button>
         <p>
           Need to sign up? <br />
-          <a href='/signup'>Sign Up Now!</a>
+          <Link to='/'>Sign Up Now!</Link>
         </p>
       </form>
     </StyledLogin>

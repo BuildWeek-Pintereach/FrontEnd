@@ -1,11 +1,8 @@
-// import React, { useState } from "react";
-import { Link, Route } from 'react-router-dom';
-import Community from './Community';
-import LoginPage from './LoginPage';
-import styled from 'styled-components';
-import AddArticle from "./AddArticle";
-import React from 'react';
-
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import DeleteArticle from "./DeleteArticle";
 const StyledMyBoard = styled.div`
 .outer{
     position: fixed;
@@ -21,28 +18,30 @@ const StyledMyBoard = styled.div`
     border-bottom: 3px solid rgba(107, 78, 113, 1);
     top: 0%;
     max-height: 19vh;
-    @media  (max-width: 375px){font-size: 2rem; display:flex; flex-direction: column;}
-    @media (max-width: 768px){font-size: 2rem;}
+    @media(max-width: 500px){font-size: 0.5rem; display:flex; flex-direction: column;}
+    @media(max-width: 820px){font-size: 1rem;}
     };
     
     
     div{
         width:49%;
         text-align: center;
+       
         h1{
             color:rgba(245, 221, 221, 1);
             font-size: 3rem;
-            @media  (max-width: 375px){font-size: 1rem; display: flex; flex-direction:column;}
-            @media (max-width: 768px){font-size: 2rem;}
+            margin-bottom:5px;
+            @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction:column;}
+            @media(max-width: 820px){font-size: 1rem;}
         }
         h2{
             color:rgba(245, 221, 221, 1);
-            font-size: 2rem;
-            @media (max-width: 375px){font-size: 2rem; display: flex; flex-direction: column;}
-            @media  (max-width:768px){font-size: 3rem;}
-        }
-        
-    
+            margin-bottom:60px;
+            line-height:1;
+            font-size: 1.6rem;
+            @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction: column;}
+            @media(max-width:820px){font-size: 1rem;}
+        } 
     }
     
     nav{
@@ -56,89 +55,114 @@ const StyledMyBoard = styled.div`
             padding: 2%;
             text-decoration: none;
             color: rgba(194, 178, 180, .7);
-            font-size: 1.5rem;
+            font-size: 1.8vw;
             text-align: center;
             border-bottom: 3px solid rgba(107, 78, 113, 1);
             border-radius: 15%;
             &:hover{
                 color: rgba(245, 221, 221, 1);
             }
-            @media (max-width: 375px){font-size: 1rem; display:flex; flex-direction:column;}
-            @media  (max-width:768px){font-size: 2rem;}
+            @media(max-width: 500px){font-size: 0.5rem; display:flex; flex-direction:column;}
+            @media(max-width:825px){font-size: 1rem;}
         } 
-        } 
-}
-`;
+    } 
+}`;
 const StyledMain = styled.div`
-main{
+  main {
     margin-top: 26vh;
-    display:flex;
+    display: flex;
     justify-content: space-around;
-    flex-wrap:wrap;
-    div{
-        padding:2%;
-        width:28%;
-        background-color: rgba(58, 68, 84, 1);
-        h1{
-         
-           color: rgba(245, 221, 221, 1);
-        
-        }
-        p{
-            color: rgba(245, 221, 221, 1);  
-        }
+    flex-wrap: wrap;
+    div {
+      padding: 2%;
+      width: 28%;
+      background-color: rgba(58, 68, 84, 1);
+      margin: 10px;
+      h1 {
+        color: rgba(245, 221, 221, 1);
+        font-size: 1rem;
+      }
+      @media (max-width: 500px) {
+        font-size: 0.5rem;
+        display: flex;
+        flex-direction: column;
+      }
+      @media (max-width: 820px) {
+        font-size: 1rem;
+      }
+
+      p {
+        color: rgba(245, 221, 221, 1);
+      }
+      @media (max-width: 500px) {
+        font-size: 0.5rem;
+        display: flex;
+        flex-direction: column;
+      }
+      @media (max-width: 820px) {
+        font-size: 1rem;
+      }
     }
-}
-`;
+  }`;
 
+const MyBoard = props => {
+  const [article, setArticle] = useState([]);
 
-function MyBoard(props) {
-    function routeToBoard(ev, article) {
-        ev.preventDefault();
-        props.history.push(`/myboard/${article.id}`);
-    }
-    
-    return (
-        <div className="my-board">
+  useEffect(() => {
+    axiosWithAuth()
+      .get("/articles")
+      .then(response => {
+        setArticle(response.data);
+      })
+      .catch(error => {
+        console.error("Server Error", error);
+      });
+  }, []);
 
-            <header>
-                <StyledMyBoard>
-                    <div className="outer">
-                        {/* <Logo>Pintreach</Logo> */}
-                        <div>
-                            <h1>Pintereach</h1>
-                            <h2>Your References Consolidated</h2>
-                        </div>
-                        <nav>
+  return (
+    <div className="my-board">
+      <header>
+        <StyledMyBoard>
+          <div className="outer">
+            {/* <Logo>Pintreach</Logo> */}
+            <div>
+              <h1>Pintereach</h1>
+              <h2>Your References Consolidated</h2>
+            </div>
+            <nav>
+              <a
+                href="https://web-ui-hen4c6hpo.now.sh/"
+                target="_blank" rel="noopener noreferrer"
+                alt="Click to visit the homepage."
+              >
+                Home
+              </a>
+              <Link to="/add-article">Add Article</Link>
+              <Link to="/community">Community</Link>
+              <Link to="/login">Log Out</Link>
+            </nav>
+          </div>
+        </StyledMyBoard>
+      </header>
 
-                            <Link to="/add-article">Add Article</Link>
-                            <a href="/community">Community</a>
-                            <Link to="/login">Log Out</Link>
-
-                        </nav>
-                    </div>
-                </StyledMyBoard>
-            </header>
-            <StyledMain>
-                <main>
-                    {props.articles.map(article => {
-                        return (
-                            <div onClick={ev => routeToBoard(ev, article)}
-                                className='myboard-card' 
-                                key={article.id}>
-                                    <p>{article.title}</p>
-                                    <p>{article.url}</p>
-                                    <p>{article.type}</p>
-                            </div>
-                        )
-                    })}
-                </main>
-            </StyledMain>
-           
-        </div>
-    );
-
-
-}
+      <StyledMain>
+        <main>
+          {article &&
+            article.map(article => {
+              return (
+                <div key={article.id} article={article}>
+                  <h1>Title:{article.title}</h1>
+                  <p className="article-link">
+                    Link: <strong>{article.link}</strong>
+                  </p>
+                  <DeleteArticle article={article} />
+                </div>
+              );
+            })}
+        </main>
+      </StyledMain>
+    </div>
+  );
+};
 
 export default MyBoard;
