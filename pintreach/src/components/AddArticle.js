@@ -124,7 +124,6 @@ const AddArticle = props => {
     <header>
         <StyledMyBoard>
           <div className="outer">
-            {/* <Logo>Pintreach</Logo> */}
             <div>
               <h1>Pintereach</h1>
               <h2>Your References Consolidated</h2>
