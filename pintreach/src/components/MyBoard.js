@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link, Route } from 'react-router-dom';
-import Community from './Community';
-import LoginPage from './LoginPage';
-import styled from 'styled-components';
-import AddArticle from "./AddArticle";
-
-
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-
+import DeleteArticle from "./DeleteArticle";
 const StyledMyBoard = styled.div`
 .outer{
     position: fixed;
@@ -46,9 +41,7 @@ const StyledMyBoard = styled.div`
             font-size: 1.6rem;
             @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction: column;}
             @media(max-width:820px){font-size: 1rem;}
-        }
-        
-    
+        } 
     }
     
     nav{
@@ -62,7 +55,7 @@ const StyledMyBoard = styled.div`
             padding: 2%;
             text-decoration: none;
             color: rgba(194, 178, 180, .7);
-            font-size: 1.5rem;
+            font-size: 1.8vw;
             text-align: center;
             border-bottom: 3px solid rgba(107, 78, 113, 1);
             border-radius: 15%;
@@ -72,125 +65,104 @@ const StyledMyBoard = styled.div`
             @media(max-width: 500px){font-size: 0.5rem; display:flex; flex-direction:column;}
             @media(max-width:825px){font-size: 1rem;}
         } 
-        } 
-}
-`;
+    } 
+}`;
 const StyledMain = styled.div`
-main{
+  main {
     margin-top: 26vh;
-    display:flex;
+    display: flex;
     justify-content: space-around;
-    flex-wrap:wrap;
-    div{
-        padding:2%;
-        width:28%;
-        background-color: rgba(58, 68, 84, 1);
-        margin:10px;
-        h1{
-         
-           color: rgba(245, 221, 221, 1);
-           font-size:1rem;
-        
-        }
-        @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction:column;}
-            @media(max-width: 820px){font-size: 1rem;}
+    flex-wrap: wrap;
+    div {
+      padding: 2%;
+      width: 28%;
+      background-color: rgba(58, 68, 84, 1);
+      margin: 10px;
+      h1 {
+        color: rgba(245, 221, 221, 1);
+        font-size: 1rem;
+      }
+      @media (max-width: 500px) {
+        font-size: 0.5rem;
+        display: flex;
+        flex-direction: column;
+      }
+      @media (max-width: 820px) {
+        font-size: 1rem;
+      }
 
-        p{
-            color: rgba(245, 221, 221, 1);  
-        }
-        @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction:column;}
-            @media(max-width: 820px){font-size: 1rem;}
-
+      p {
+        color: rgba(245, 221, 221, 1);
+      }
+      @media (max-width: 500px) {
+        font-size: 0.5rem;
+        display: flex;
+        flex-direction: column;
+      }
+      @media (max-width: 820px) {
+        font-size: 1rem;
+      }
     }
-    
-}
-`;
+  }`;
 
+const MyBoard = props => {
+  const [article, setArticle] = useState([]);
 
-const MyBoard = () => {
+  useEffect(() => {
+    axiosWithAuth()
+      .get("/articles")
+      .then(response => {
+        setArticle(response.data);
+      })
+      .catch(error => {
+        console.error("Server Error", error);
+      });
+  }, []);
 
-
-    const [article, setArticle] = useState([]);
-    //     id: '1', title: 'My Research Paper', type: 'Business', url: 'https://abc.com'
-    // }, { id: '2', title: 'The HealthInsider', type: 'Health', url: 'https://abc.com' },
-    // { id: '3', title: 'The Psychologist and ME', type: 'Health', url: 'https://abc.com' }
-    // ])
-    useEffect(() => {
-
-
-        axiosWithAuth()
-            .get("/articles")
-            //.get(`https://pintereach-be.herokuapp.com/${id}articles`)
-            .then(response => {
-                //console.log("response", response);
-                setArticle(response.data)
-
-            })
-            .catch(error => {
-                console.error("Server Error", error);
-
-            })
-    }, [])
-    const addNewArticle = article => {
-
-        setArticle([...article, article])
-
-        // console.log(articles)
-    }
-    if (!article) {
-        return <div>Loading articles information...</div>;
-
-    }
-    // console.log(articles)
-    //const { category_ids, title, link } = props.articles;
-    return (
-
-        <div className="my-board" >
-
-            <header>
-                <StyledMyBoard>
-                    <div className="outer">
-                        {/* <Logo>Pintreach</Logo> */}
-                        <div>
-                            <h1>Pintereach</h1>
-                            <h2>Your References Consolidated</h2>
-                        </div>
-                        <nav>
-
-                            <Link to="/add-article">Add Article</Link>
-                            <Link to="/community">Community</Link>
-                            <Link to="/login">Log Out</Link>
-                        </nav>
-                    </div>
-                </StyledMyBoard>
-            </header>
-            <StyledMain>
-                <main>
-
-                    {article && article.map(article => {
-                        return (
-                            <div className="article">
-                                <h1>Title:{article.title}</h1>
-                                {/* <MyBoardList users={yBoardList} /> */}
-                                <p className="article-link">
-                                    Desc: <strong>{article.link}</strong>
-                                </p>
-                            </div>
-                        )
-                    })}
-                </main>
-            </StyledMain>
-            <div className="addArticle">
-                <AddArticle />
-                {article.map(list => (
-                    <Article list={list} />
-                ))}
+  return (
+    <div className="my-board">
+      <header>
+        <StyledMyBoard>
+          <div className="outer">
+            {/* <Logo>Pintreach</Logo> */}
+            <div>
+              <h1>Pintereach</h1>
+              <h2>Your References Consolidated</h2>
             </div>
+            <nav>
+              <a
+                href="https://web-ui-hen4c6hpo.now.sh/"
+                target="_blank" rel="noopener noreferrer"
+                alt="Click to visit the homepage."
+              >
+                Home
+              </a>
+              <Link to="/add-article">Add Article</Link>
+              <Link to="/community">Community</Link>
+              <Link to="/login">Log Out</Link>
+            </nav>
+          </div>
+        </StyledMyBoard>
+      </header>
 
-        </div >
-    );
-
-
-}
+      <StyledMain>
+        <main>
+          {article &&
+            article.map(article => {
+              return (
+                <div key={article.id} article={article}>
+                  <h1>Title:{article.title}</h1>
+                  <p className="article-link">
+                    Link: <strong>{article.link}</strong>
+                  </p>
+                  <DeleteArticle article={article} />
+                </div>
+              );
+            })}
+        </main>
+      </StyledMain>
+    </div>
+  );
+};
 
 export default MyBoard;
