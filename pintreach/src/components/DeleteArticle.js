@@ -10,6 +10,7 @@ function DeleteArticle(props) {
       //  console.log('delete call is firing')
       .then(res => {
         window.location.reload(false); 
+        //there was a 500 error every time user tries to delete a file. this is a workaround.
       })
       .catch(err => console.log(err));
   };
