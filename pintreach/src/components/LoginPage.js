@@ -68,6 +68,7 @@ const LoginPage = props => {
     .then(res => {
         // console.log(res)
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem('userid', res.data.id);
         props.history.push('/myboard');
     })
         .catch(err => console.log('login error', err.response));

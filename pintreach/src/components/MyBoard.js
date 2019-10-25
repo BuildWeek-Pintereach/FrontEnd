@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import styled from "styled-components";
-
-
-
-
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-
+import EditMyBoard from './EditMyBoard';
 const StyledMyBoard = styled.div`
 .outer{
     position: fixed;
@@ -160,12 +155,13 @@ const MyBoard = () => {
                   <p className="article-link">
                     Desc: <strong>{article.link}</strong>
                   </p>
+                  <EditMyBoard article={article}/>
                 </div>
               );
             })}
         </main>
       </StyledMain>
-          
+       
     </div>
   );
 };
