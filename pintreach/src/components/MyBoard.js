@@ -179,8 +179,13 @@ const MyBoard = () => {
                         )
                     })}
                 </main>
-                {/* <button onClick={addNewArticle} className="add-button">Add Article </button> */}
             </StyledMain>
+            <div className="addArticle">
+                <AddArticle />
+                {article.map(list => (
+                    <Article list={list} />
+                ))}
+            </div>
 
         </div >
     );
