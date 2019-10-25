@@ -141,18 +141,18 @@ const AddArticle = ({ props, addArticle, initialCard }) => {
         category_ids: ''
     });
 
-    // useEffect(() => {
-    //   axios
+    useEffect(() => {
+      axios
 
-    //     .post(`https://reqres.in/api/users/, values`)
-    //
-    //  .then(response => {
-    //     console.log('is posting')
-    //     props.history.push('my-board', response.data)
-    // }, [])
-    //   .catch(err => console.log("it did not work", err.response));
-    //console.log('submit is working');
-    // }, [])
+        .post(`https://reqres.in/api/users/, values`)
+    
+     .then(response => {
+        console.log('is posting')
+        props.history.push('my    board', response.data)
+    }, [])
+      .catch(err => console.log("it did not work", err.response));
+    console.log('submit is working');
+    }, [])
 
 
 
