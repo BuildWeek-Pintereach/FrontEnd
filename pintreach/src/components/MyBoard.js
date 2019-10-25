@@ -131,7 +131,7 @@ const MyBoard = props => {
             </div>
             <nav>
               <a
-                href="https://pintereach-marketing.tlbdev.now.sh/index.html"
+                href="https://marketing-for-pintereach.tlbdev.now.sh/"
                 target="_blank" rel="noopener noreferrer"
                 alt="Click to visit the homepage."
               >
