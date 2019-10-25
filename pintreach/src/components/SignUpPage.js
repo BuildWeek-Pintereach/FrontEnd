@@ -34,9 +34,13 @@ input {
 }
     
 button {
-  padding:10px;
+  padding:5px;
   border-radius:10px
-  background-color:darkgray;
+  background-color:darkblue;
+  color:white;
+  font-size:1.5rem;
+  padding-left:25px;
+  padding-right:25px;
 }
 `;
 

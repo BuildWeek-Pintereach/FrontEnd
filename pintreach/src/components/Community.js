@@ -1,35 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import friends from "./../data.js";
-import MyBoard from "./MyBoard";
 import axios from "axios";
-import LoginPage from "./LoginPage";
-import SearchForm from "./CommunitySearch.js";
-// import { CommunityList } from "./CommunityList.js";
+
 
 const Body = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 23vh;
+  padding-top: 14.5vw;
   background: rgba(83, 104, 126, 1);
+  @media (max-width: 820px) {
+    padding-top: 19vw;
+  }
+  @media (max-width: 500px) {
+    padding-top: 30vw;
+  }
   h1 {
     color: rgba(245, 221, 221, 1);
     font-size: 3.5vw;
-  }
-`;
-
-const Friends = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  
-  width: 35%;
-  max-width: 35%;
-  form{
-    margin 0;
-    width: 100%;
   }
 `;
 
@@ -37,38 +25,25 @@ const Search = styled.div`
   width: 100%;
   input {
     width: 70%;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 2vw;
+    @media (max-width: 500px) {
+      width: 40%;
+    }
+    @media (max-width: 820px) {
+      width: 40%;
+    }
   }
 `;
 
 const Articles = styled.div`
-  padding-right: 4%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 65%;
-  max-width: 65%;
-`;
-const Logo = styled.h2`
-  padding: 0;
-  margin: 0;
-`;
-
-const FriendLink = styled.button`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 0 0 0;
-  color: rgba(194, 178, 180, 0.7);
-  &:hover {
-    color: rgba(245, 221, 221, 1);
-  }
-  background: rgba(58, 68, 84, 0.9);
-  border-radius: 10px;
-  height: 5vw;
-  width: 80%;
-  font-size: 1.4vw;
+  width: 90%;
+  max-width: 90%;
 `;
 
 const ArticleCat = styled.h2`
@@ -81,15 +56,10 @@ const ArticleCat = styled.h2`
   max-width: 90%;
 `;
 
-const ArticleLink = styled.a`
-  box-sizing: border-box;
-  color: black;
-  max-width: 90%;
-`;
-
 const FriendsandArticles = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center
   max-width: 100%;
   margin-bottom: 40px;
 `;
@@ -100,17 +70,21 @@ const LinkDiv = styled.div`
   padding: 2%;
   background-color: rgba(58, 68, 84, 0.9);
   border-radius: 7px;
+  margin-bottom: 2%;
+  color: rgba(194, 178, 180, 0.7);
   a {
     text-align: center;
     color: rgba(194, 178, 180, 0.7);
     &:hover {
       color: rgba(245, 221, 221, 1);
     }
-
     text-decoration: none;
     word-wrap: break-word;
     width: 100%;
     font-size: 1.8vw;
+    @media (max-width: 500px) {
+      font-size: 3vw;
+    }
   }
 `;
 
@@ -123,14 +97,16 @@ const StyledMyBoard = styled.div`
     width: 100%;
     padding: 2%;
     background-color: rgba(58, 68, 84, 0.9);
-
     border-bottom-left-radius: 15%;
     border-bottom-right-radius: 15%;
     border-bottom: 3px solid rgba(107, 78, 113, 1);
     top: 0%;
     max-height: 15vh;
+    @media (max-width: 500px) {
+      display: flex;
+      flex-direction: column;
+    }
   }
-
   div {
     width: 49%;
     text-align: center;
@@ -138,26 +114,33 @@ const StyledMyBoard = styled.div`
       color: rgba(245, 221, 221, 1);
       font-size: 4.3vw;
       margin: 2% 0 0 0;
+      @media (max-width: 500px) {
+        font-size: 9.5vw;
+      }
     }
     h2 {
       color: rgba(245, 221, 221, 1);
       font-size: 2.5vw;
       padding-bottom: 10px;
+      @media (max-width: 500px) {
+        font-size: 3.2vw;
+        padding: 0;
+      }
     }
   }
-
   nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 49%;
-
+    @media (max-width: 500px) {
+      width: 80%;
+    }
     a {
       width: 20%;
       padding: 2%;
       text-decoration: none;
-
-      font-size: 2vw;
+      font-size: 1.8vw;
       text-align: center;
       border-bottom: 3px solid rgba(107, 78, 113, 1);
       border-radius: 15%;
@@ -165,33 +148,49 @@ const StyledMyBoard = styled.div`
       &:hover {
         color: rgba(245, 221, 221, 1);
       }
+      @media (max-width: 500px) {
+        font-size: 3.1vw;
+        margin-bottom: 4%;
+      }
+      @media (max-width: 820px) {
+        font-size: 2.4vw;
+      }
     }
   }
 `;
 
-const Community = props => {
-  const [userID, setUserID] = useState();
-  const [user, setUser] = useState();
+const Community = () => {
+  const [articles, setArticles] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState(friends);
+  const [searchResults, setSearchResults] = useState([]);
 
   /////////////////Grab Users
+
   useEffect(() => {
-    axios.get(`https://bw-backend.herokuapp.com/users`).then(response => {
-      console.log("This is users", response);
-    });
+    const results = articles.filter(article =>
+      article.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setSearchResults(results);
+  }, [articles, searchTerm]);
+
+  useEffect(() => {
+    axios
+      .get(`https://bw-backend.herokuapp.com/articles/`)
+      .then(response => {
+        console.log("This is users", response);
+        setArticles(response.data);
+        setSearchResults(response.data);
+      })
+      .catch(error => {
+        console.log("error", error);
+      });
   }, []);
 
   ////////////////////Search Form
+
   const handleChange = event => {
     setSearchTerm(event.target.value);
   };
-  useEffect(() => {
-    const results = friends.filter(person =>
-      person.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setSearchResults(results);
-  }, [searchTerm]);
 
   return (
     <Body>
@@ -204,78 +203,36 @@ const Community = props => {
               <h2>Your References Consolidated</h2>
             </div>
             <nav>
+            <a href='https://web-ui-hen4c6hpo.now.sh/' target="_blank" rel="noopener noreferrer" alt='Click to visit the homepage.'>Home</a>
               <Link to="/add-article">Add Article</Link>
-              <a href="/community">Community</a>
+              <Link to="/myboard">My Board</Link>
               <Link to="/login">Log Out</Link>
-
-              <Route path="/my-board" component={MyBoard} />
-              <Route path="/log-in" component={LoginPage} />
             </nav>
           </div>
         </StyledMyBoard>
       </header>
       <div className="body">
-        <h1>See What Yours Friends Are Looking Into!</h1>
+        <h1>See What Others Are Looking Into!</h1>
         <FriendsandArticles>
-          <Friends>
+          <Articles>
             <Search>
               <input
                 type="text"
-                placeholder="Search"
+                placeholder="Search titles..."
                 value={searchTerm}
                 onChange={handleChange}
               />
             </Search>
-
-            {searchResults.map(item => (
-              <FriendLink
-                onClick={f => {
-                  f.preventDefault();
-                  f.stopPropagation();
-                  setUserID(f.id);
-                  setUser(f);
-                }}
-              >
-                {item.name}
-              </FriendLink>
-            ))}
-          </Friends>
-          <Articles>
-            <ArticleCat>Biology</ArticleCat>
-            <LinkDiv>
-              {/* {user &&
-                user.articles.Biology.map(item => {
-                  return <a>{item}</a>;
-                })} */}
-            </LinkDiv>
-            <ArticleCat>Psychology</ArticleCat>
-            <LinkDiv>
-              {/* {user &&
-                user.articles.Psychology.map(item => {
-                  return <a>{item}</a>;
-                })} */}
-            </LinkDiv>
-            <ArticleCat>Technology</ArticleCat>
-            <LinkDiv>
-              {/* {user &&
-                user.articles.Technology.map(item => {
-                  return <a>{item}</a>;
-                })} */}
-            </LinkDiv>
-            <ArticleCat>Physics</ArticleCat>
-            <LinkDiv>
-              {/* {user &&
-                user.articles.Physics.map(item => {
-                  return <a>{item}</a>;
-                })} */}
-            </LinkDiv>
-            <ArticleCat>Health</ArticleCat>
-            <LinkDiv>
-              {/* {user &&
-                user.articles.Health.map(item => {
-                  return <a>{item}</a>;
-                })} */}
-            </LinkDiv>
+            <ArticleCat>Community Articles</ArticleCat>
+            {searchResults.map(item => {
+              return (
+                <LinkDiv key={item.id}>
+                  <h3>{item.title}</h3>
+                  <a href={item.link}>{item.link}</a>
+                </LinkDiv>
+              );
+            })}
+           
           </Articles>
         </FriendsandArticles>
       </div>
