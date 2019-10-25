@@ -153,7 +153,7 @@ const MyBoard = (props) => {
                 <div key={article.id} article={article}>
                   <h1>Title:{article.title}</h1>
                   <p className="article-link">
-                    Desc: <strong>{article.link}</strong>
+                    Link: <strong>{article.link}</strong>
                   </p>
                   <DeleteArticle article={article}/>
                 </div>
