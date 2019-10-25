@@ -5,7 +5,9 @@ import friends from "./../data.js";
 import MyBoard from "./MyBoard";
 import axios from "axios";
 import LoginPage from "./LoginPage";
-
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import SearchForm from "./CommunitySearch.js";
+// import { CommunityList } from "./CommunityList.js";
 
 const Body = styled.div`
   display: flex;
@@ -105,7 +107,6 @@ const LinkDiv = styled.div`
     &:hover {
       color: rgba(245, 221, 221, 1);
     }
-
     text-decoration: none;
     word-wrap: break-word;
     width: 100%;
@@ -122,14 +123,12 @@ const StyledMyBoard = styled.div`
     width: 100%;
     padding: 2%;
     background-color: rgba(58, 68, 84, 0.9);
-
     border-bottom-left-radius: 15%;
     border-bottom-right-radius: 15%;
     border-bottom: 3px solid rgba(107, 78, 113, 1);
     top: 0%;
     max-height: 15vh;
   }
-
   div {
     width: 49%;
     text-align: center;
@@ -144,18 +143,15 @@ const StyledMyBoard = styled.div`
       padding-bottom: 10px;
     }
   }
-
   nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 49%;
-
     a {
       width: 20%;
       padding: 2%;
       text-decoration: none;
-
       font-size: 2vw;
       text-align: center;
       border-bottom: 3px solid rgba(107, 78, 113, 1);
@@ -171,85 +167,76 @@ const StyledMyBoard = styled.div`
 const Community = props => {
   const [userID, setUserID] = useState();
   const [user, setUser] = useState();
+  const [articles, setArticles] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
-    useEffect(() => {
-  //     axios
-  //       .get(`https://pintereach-be.herokuapp.com/${id}/articles`)
-  //       .then(response => {
-  //         console.log("response", response);
-  //       })
-  //       .catch(error => {
-  //         console.error("Server Error", error);
-  //       });
-    }, []);
+  /////////////////Grab Users
+
+  useEffect(() => {
+    const results = articles.filter(article =>
+      article.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setSearchResults(results);
+  }, [searchTerm]);
+
+  useEffect(() => {
+    axios
+      .get(`https://bw-backend.herokuapp.com/articles/`)
+      .then(response => {
+        console.log("This is users", response);
+        setArticles(response.data);
+      })
+      .catch(error => {
+        console.log("error", error);
+      });
+  }, []);
+
+  ////////////////////Search Form
+
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+  };
 
   return (
     <Body>
-      {/* <SHeader> */}
-        <Logo>Pintreach</Logo>
-        <Link to="/my-board">My Board</Link>
-        <Link to="/community">Community</Link>
-        <Link to="/log-in">Log Out</Link>
-        <Route path="/my-board" component={MyBoard} />
-        <Route path="/community" component={Community} />
-        <Route path="/log-in" component={LoginPage} />
-      {/* </SHeader> */}
+      <header>
+        <StyledMyBoard>
+          <div className="outer">
+            {/* <Logo>Pintreach</Logo> */}
+            <div>
+              <h1>Pintereach</h1>
+              <h2>Your References Consolidated</h2>
+            </div>
+            <nav>
+              <Link to="/add-article">Add Article</Link>
+              <a href="/myboard">My Board</a>
+              <Link to="/login">Log Out</Link>
+            </nav>
+          </div>
+        </StyledMyBoard>
+      </header>
       <div className="body">
-        <h1>See What Yours Friends Are Looking Into!</h1>
+        <h1>See What Your Friends Are Looking Into!</h1>
         <FriendsandArticles>
-          <Friends>
-            {friends.map((f, index) => {
+          <Articles>
+            <Search>
+              <input
+                type="text"
+                placeholder="Search"
+                value={searchTerm}
+                onChange={handleChange}
+              />
+            </Search>
+            <ArticleCat>Community Articles</ArticleCat>
+            {searchResults.map(item => {
               return (
-                <FriendLink key={index}>
-                  <h3
-                    onClick={e => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setUserID(f.id);
-                      setUser(f);
-                    }}
-                  >
-                    {f.name}
-                  </h3>
-                </FriendLink>
+                <div>
+                  <h3>{item.title}</h3>
+                  <a href={item.link}>{item.link}</a>
+                </div>
               );
             })}
-          </Friends>
-          <Articles>
-            <ArticleCat>Biology</ArticleCat>
-
-            {user &&
-              user.articles.Biology.map(item => {
-                return <Link>{item}</Link>;
-              })}
-
-            <ArticleCat>Psychology</ArticleCat>
-
-            {user &&
-              user.articles.Psychology.map(item => {
-                return <Link>{item}</Link>;
-              })}
-
-            <ArticleCat>Technology</ArticleCat>
-
-            {user &&
-              user.articles.Technology.map(item => {
-                return <Link>{item}</Link>;
-              })}
-
-            <ArticleCat>Physics</ArticleCat>
-
-            {user &&
-              user.articles.Physics.map(item => {
-                return <Link>{item}</Link>;
-              })}
-
-            <ArticleCat>Health</ArticleCat>
-
-            {user &&
-              user.articles.Health.map(item => {
-                return <Link>{item}</Link>;
-              })}
           </Articles>
         </FriendsandArticles>
       </div>
