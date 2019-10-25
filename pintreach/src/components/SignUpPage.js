@@ -34,9 +34,13 @@ input {
 }
     
 button {
-  padding:10px;
+  padding:5px;
   border-radius:10px
-  background-color:darkgray;
+  background-color:darkblue;
+  color:white;
+  font-size:1.5rem;
+  padding-left:25px;
+  padding-right:25px;
 }
 `;
 
@@ -75,9 +79,6 @@ const SignUpPage = props => {
 
   return (
     <StyledPage>
-      <nav>
-        <a href='https://web-ui-2btl8bu6n.now.sh/index.html'>Home</a>
-      </nav>
     <StyledSignUp>
       <form className="sign-up-form" onSubmit={onSubmit}>
         <label htmlFor="first-name">Username (must be 8 or more characters): </label>

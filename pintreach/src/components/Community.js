@@ -218,7 +218,7 @@ const Community = () => {
             <Search>
               <input
                 type="text"
-                placeholder="Search"
+                placeholder="Search titles..."
                 value={searchTerm}
                 onChange={handleChange}
               />
