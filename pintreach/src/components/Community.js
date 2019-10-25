@@ -20,20 +20,6 @@ const Body = styled.div`
   }
 `;
 
-const Friends = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  
-  width: 35%;
-  max-width: 35%;
-  form{
-    margin 0;
-    width: 100%;
-  }
-`;
-
 const Search = styled.div`
   width: 100%;
   input {
@@ -47,29 +33,12 @@ const Articles = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 65%;
-  max-width: 65%;
+  width: 90%;
+  max-width: 90%;
 `;
 const Logo = styled.h2`
   padding: 0;
   margin: 0;
-`;
-
-const FriendLink = styled.button`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 0 0 0;
-  color: rgba(194, 178, 180, 0.7);
-  &:hover {
-    color: rgba(245, 221, 221, 1);
-  }
-  background: rgba(58, 68, 84, 0.9);
-  border-radius: 10px;
-  height: 5vw;
-  width: 80%;
-  font-size: 1.4vw;
 `;
 
 const ArticleCat = styled.h2`
@@ -82,15 +51,10 @@ const ArticleCat = styled.h2`
   max-width: 90%;
 `;
 
-const ArticleLink = styled.a`
-  box-sizing: border-box;
-  color: black;
-  max-width: 90%;
-`;
-
 const FriendsandArticles = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center
   max-width: 100%;
   margin-bottom: 40px;
 `;
@@ -101,6 +65,8 @@ const LinkDiv = styled.div`
   padding: 2%;
   background-color: rgba(58, 68, 84, 0.9);
   border-radius: 7px;
+  margin-bottom: 2%;
+  color: rgba(194, 178, 180, 0.7);
   a {
     text-align: center;
     color: rgba(194, 178, 180, 0.7);
@@ -192,6 +158,7 @@ const Community = props => {
       .then(response => {
         console.log("This is users", response);
         setArticles(response.data);
+        setSearchResults(response.data);
       })
       .catch(error => {
         console.log("error", error);
@@ -216,17 +183,14 @@ const Community = props => {
             </div>
             <nav>
               <Link to="/add-article">Add Article</Link>
-              <a href="/community">Community</a>
+              <a href="/myboard">My Board</a>
               <Link to="/login">Log Out</Link>
-
-              <Route path="/my-board" component={MyBoard} />
-              <Route path="/log-in" component={LoginPage} />
             </nav>
           </div>
         </StyledMyBoard>
       </header>
       <div className="body">
-        <h1>See What Yours Friends Are Looking Into!</h1>
+        <h1>See What Others Are Looking Into!</h1>
         <FriendsandArticles>
           <Articles>
             <Search>
@@ -240,10 +204,10 @@ const Community = props => {
             <ArticleCat>Community Articles</ArticleCat>
             {searchResults.map(item => {
               return (
-                <div>
+                <LinkDiv>
                   <h3>{item.title}</h3>
                   <a href={item.link}>{item.link}</a>
-                </div>
+                </LinkDiv>
               );
             })}
             {/* <LinkDiv>
