@@ -11,6 +11,7 @@ const Body = styled.div`
   flex-direction: column;
   padding-top: 14.5vw;
   background: rgba(83, 104, 126, 1);
+  min-height: 100vh;
 
   @media (max-width: 820px) {
     padding-top: 19vw;
