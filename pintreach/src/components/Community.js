@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
 import styled from "styled-components";
-import friends from "./../data.js";
 import MyBoard from "./MyBoard";
 import axios from "axios";
 import LoginPage from "./LoginPage";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import SearchForm from "./CommunitySearch.js";
-// import { CommunityList } from "./CommunityList.js";
 
 const Body = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 10vh;
+  padding-top: 14.5vw;
   background: rgba(83, 104, 126, 1);
+
+  @media (max-width: 820px) {
+    padding-top: 19vw;
+  }
+  @media (max-width: 500px) {
+    padding-top: 30vw;
+  }
+
   h1 {
     color: rgba(245, 221, 221, 1);
     font-size: 3.5vw;
@@ -24,11 +29,19 @@ const Search = styled.div`
   width: 100%;
   input {
     width: 70%;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 2vw;
+    @media (max-width: 500px) {
+      width: 40%;
+    }
+    @media (max-width: 820px) {
+      width: 40%;
+    }
   }
 `;
 
 const Articles = styled.div`
-  padding-right: 4%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,6 +91,9 @@ const LinkDiv = styled.div`
     word-wrap: break-word;
     width: 100%;
     font-size: 1.8vw;
+    @media (max-width: 500px) {
+      font-size: 3vw;
+    }
   }
 `;
 
@@ -96,6 +112,10 @@ const StyledMyBoard = styled.div`
     border-bottom: 3px solid rgba(107, 78, 113, 1);
     top: 0%;
     max-height: 15vh;
+    @media (max-width: 500px) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   div {
@@ -105,11 +125,18 @@ const StyledMyBoard = styled.div`
       color: rgba(245, 221, 221, 1);
       font-size: 4.3vw;
       margin: 2% 0 0 0;
+      @media (max-width: 500px) {
+        font-size: 9.5vw;
+      }
     }
     h2 {
       color: rgba(245, 221, 221, 1);
       font-size: 2.5vw;
       padding-bottom: 10px;
+      @media (max-width: 500px) {
+        font-size: 3.2vw;
+        padding: 0;
+      }
     }
   }
 
@@ -118,6 +145,9 @@ const StyledMyBoard = styled.div`
     justify-content: space-around;
     align-items: center;
     width: 49%;
+    @media (max-width: 500px) {
+      width: 80%;
+    }
 
     a {
       width: 20%;
@@ -131,6 +161,13 @@ const StyledMyBoard = styled.div`
       color: rgba(194, 178, 180, 0.7);
       &:hover {
         color: rgba(245, 221, 221, 1);
+      }
+      @media (max-width: 500px) {
+        font-size: 3.1vw;
+        margin-bottom: 4%;
+      }
+      @media (max-width: 820px) {
+        font-size: 2.4vw;
       }
     }
   }
