@@ -107,32 +107,30 @@ main{
 `;
 
 
-const MyBoard = props => {
-    console.log(props);
+const MyBoard = () => {
 
-    const [article, setArticle] = useState({});
+
+    const [article, setArticle] = useState([]);
     //     id: '1', title: 'My Research Paper', type: 'Business', url: 'https://abc.com'
     // }, { id: '2', title: 'The HealthInsider', type: 'Health', url: 'https://abc.com' },
     // { id: '3', title: 'The Psychologist and ME', type: 'Health', url: 'https://abc.com' }
     // ])
     useEffect(() => {
-        const id = props.match.params.id;
-        // axiosWithAuth()
-        //  .get('/articles')
-        //.get(`https://bw-backend.herokuapp.com/users/articles`)
+
+
         axiosWithAuth()
-        .get("https://bw-backend.herokuapp.com/users/articles")
+            .get("/articles")
             //.get(`https://pintereach-be.herokuapp.com/${id}articles`)
             .then(response => {
-                console.log("response", response);
+                //console.log("response", response);
                 setArticle(response.data)
 
-            }, [])
+            })
             .catch(error => {
                 console.error("Server Error", error);
 
-            }, [])
-    })
+            })
+    }, [])
     const addNewArticle = article => {
 
         setArticle([...article, article])
@@ -168,10 +166,10 @@ const MyBoard = props => {
             </header>
             <StyledMain>
                 <main>
-                    console.log(articles)
+
                     {article && article.map(article => {
                         return (
-                            <div key={article.category_ids} className="article-id">
+                            <div className="article">
                                 <h1>Title:{article.title}</h1>
                                 {/* <MyBoardList users={yBoardList} /> */}
                                 <p className="article-link">
