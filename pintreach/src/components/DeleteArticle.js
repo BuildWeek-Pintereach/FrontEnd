@@ -2,7 +2,7 @@ import React from "react";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
-function EditMyBoard(props) {
+function DeleteArticle(props) {
   const handleDelete = e => {
     e.preventDefault();
     axiosWithAuth()
@@ -23,4 +23,4 @@ function EditMyBoard(props) {
   );
 }
 
-export default EditMyBoard;
+export default DeleteArticle;
