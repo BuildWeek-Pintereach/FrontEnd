@@ -43,7 +43,7 @@ const StyledMyBoard = styled.div`
       padding: 2%;
       text-decoration: none;
       color: rgba(194, 178, 180, 0.7);
-      font-size: 1.5rem;
+      font-size: 1.8vw;
       text-align: center;
       border-bottom: 3px solid rgba(107, 78, 113, 1);
       border-radius: 15%;
@@ -130,8 +130,9 @@ const AddArticle = props => {
               <h2>Your References Consolidated</h2>
             </div>
             <nav>
-              <Link to="/add-article">Add Article</Link>
-              <a href="/myboard">My Board</a>
+            <a href='https://web-ui-2btl8bu6n.now.sh/index.html' target="_blank" rel="noopener noreferrer" alt='Click to visit the homepage.'>Home</a>
+              <Link to='/myboard'>My Board</Link>
+              <Link to="/community">Community</Link>
               <Link to="/login">Log Out</Link>
             </nav>
           </div>

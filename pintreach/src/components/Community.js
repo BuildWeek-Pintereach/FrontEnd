@@ -140,7 +140,7 @@ const StyledMyBoard = styled.div`
       width: 20%;
       padding: 2%;
       text-decoration: none;
-      font-size: 2vw;
+      font-size: 1.8vw;
       text-align: center;
       border-bottom: 3px solid rgba(107, 78, 113, 1);
       border-radius: 15%;
@@ -203,6 +203,7 @@ const Community = () => {
               <h2>Your References Consolidated</h2>
             </div>
             <nav>
+            <a href='https://web-ui-2btl8bu6n.now.sh/index.html' target="_blank" rel="noopener noreferrer" alt='Click to visit the homepage.'>Home</a>
               <Link to="/add-article">Add Article</Link>
               <a href="/myboard">My Board</a>
               <Link to="/login">Log Out</Link>

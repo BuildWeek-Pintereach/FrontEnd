@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import DeleteArticle from './DeleteArticle';
+import DeleteArticle from "./DeleteArticle";
 const StyledMyBoard = styled.div`
 .outer{
     position: fixed;
@@ -41,9 +41,7 @@ const StyledMyBoard = styled.div`
             font-size: 1.6rem;
             @media(max-width: 500px){font-size: 0.5rem; display: flex; flex-direction: column;}
             @media(max-width:820px){font-size: 1rem;}
-        }
-        
-    
+        } 
     }
     
     nav{
@@ -57,7 +55,7 @@ const StyledMyBoard = styled.div`
             padding: 2%;
             text-decoration: none;
             color: rgba(194, 178, 180, .7);
-            font-size: 1.5rem;
+            font-size: 1.8vw;
             text-align: center;
             border-bottom: 3px solid rgba(107, 78, 113, 1);
             border-radius: 15%;
@@ -67,9 +65,8 @@ const StyledMyBoard = styled.div`
             @media(max-width: 500px){font-size: 0.5rem; display:flex; flex-direction:column;}
             @media(max-width:825px){font-size: 1rem;}
         } 
-        } 
-}
-`;
+    } 
+}`;
 const StyledMain = styled.div`
   main {
     margin-top: 26vh;
@@ -106,12 +103,10 @@ const StyledMain = styled.div`
         font-size: 1rem;
       }
     }
-  }
-`;
+  }`;
 
-const MyBoard = (props) => {
+const MyBoard = props => {
   const [article, setArticle] = useState([]);
-  
 
   useEffect(() => {
     axiosWithAuth()
@@ -135,6 +130,13 @@ const MyBoard = (props) => {
               <h2>Your References Consolidated</h2>
             </div>
             <nav>
+              <a
+                href="https://web-ui-2btl8bu6n.now.sh/index.html"
+                target="_blank" rel="noopener noreferrer"
+                alt="Click to visit the homepage."
+              >
+                Home
+              </a>
               <Link to="/add-article">Add Article</Link>
               <Link to="/community">Community</Link>
               <Link to="/login">Log Out</Link>
@@ -142,11 +144,9 @@ const MyBoard = (props) => {
           </div>
         </StyledMyBoard>
       </header>
- 
 
       <StyledMain>
         <main>
-
           {article &&
             article.map(article => {
               return (
@@ -155,13 +155,12 @@ const MyBoard = (props) => {
                   <p className="article-link">
                     Link: <strong>{article.link}</strong>
                   </p>
-                  <DeleteArticle article={article}/>
+                  <DeleteArticle article={article} />
                 </div>
               );
             })}
         </main>
       </StyledMain>
-       
     </div>
   );
 };
