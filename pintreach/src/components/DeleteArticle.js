@@ -9,7 +9,7 @@ function DeleteArticle(props) {
       .delete(`/users/${props.article.user_id}/articles/${props.article.id}`)
       //  console.log('delete call is firing')
       .then(res => {
-        props.history.push("/myboard");
+        window.location.reload(false); 
       })
       .catch(err => console.log(err));
   };

@@ -109,7 +109,7 @@ const StyledMain = styled.div`
   }
 `;
 
-const MyBoard = () => {
+const MyBoard = (props) => {
   const [article, setArticle] = useState([]);
   
 
