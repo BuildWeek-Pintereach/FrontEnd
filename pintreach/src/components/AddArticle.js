@@ -192,20 +192,12 @@ const AddArticle = () => {
                             <input type="text" placeholder="Title" name="title" onChange={handleChange} value={article.title} />
 
                             <label htmlFor="link">Link:</label>
-                            <input type="text" placeholder="link" name="link" onChange={handleChange} value={article.body} />
+                            <input type="text" placeholder="link" name="link" onChange={handleChange} value={article.link} />
                             <button type="submit" className="add-button">Add Article </button>
-
-
-
-
-
                         </form>
                     </div>
                 </main>
             </StyledMain>
-
-
-
 
         </div>
 
