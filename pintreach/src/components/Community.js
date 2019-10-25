@@ -45,10 +45,6 @@ const Articles = styled.div`
   width: 90%;
   max-width: 90%;
 `;
-const Logo = styled.h2`
-  padding: 0;
-  margin: 0;
-`;
 
 const ArticleCat = styled.h2`
   background: rgba(58, 68, 84, 0.9);
@@ -163,9 +159,7 @@ const StyledMyBoard = styled.div`
   }
 `;
 
-const Community = props => {
-  const [userID, setUserID] = useState();
-  const [user, setUser] = useState();
+const Community = () => {
   const [articles, setArticles] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -177,7 +171,7 @@ const Community = props => {
       article.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(results);
-  }, [searchTerm]);
+  }, [articles, searchTerm]);
 
   useEffect(() => {
     axios
@@ -231,7 +225,7 @@ const Community = props => {
             <ArticleCat>Community Articles</ArticleCat>
             {searchResults.map(item => {
               return (
-                <LinkDiv>
+                <LinkDiv key={item.id}>
                   <h3>{item.title}</h3>
                   <a href={item.link}>{item.link}</a>
                 </LinkDiv>
